@@ -9,7 +9,8 @@
 #import "NLVideoPreviewViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "NLConfigure.h"
+#import "NLVideoPlayer.h"
+
 @interface NLVideoPreviewViewController ()
 
 @property(nonatomic,strong)AVPlayer *player;

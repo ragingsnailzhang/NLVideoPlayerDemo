@@ -30,4 +30,10 @@
 //选择按钮大小
 #define SELECTEDBTN_WIDTH  53
 
+//MARK:文件夹名称
+//原始文件存放文件夹
+#define VIDEO_FOLDER  @"videoFolder"
+//压缩文件存放文件夹
+#define COMPRESSION_VIDEO_FOLDER  @"compressionVideoFolder"
+
 #endif /* NLConfigure_h */

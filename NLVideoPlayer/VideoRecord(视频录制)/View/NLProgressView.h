@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NLConfigure.h"
 
 @interface NLProgressView : UIView
 

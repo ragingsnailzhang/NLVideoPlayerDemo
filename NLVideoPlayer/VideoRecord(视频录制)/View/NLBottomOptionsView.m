@@ -7,7 +7,7 @@
 //
 
 #import "NLBottomOptionsView.h"
-#import "NLConfigure.h"
+#import "NLVideoPlayer.h"
 @interface NLBottomOptionsView()
 
 @property(nonatomic,strong)UIButton *cancleBtn;    //取消

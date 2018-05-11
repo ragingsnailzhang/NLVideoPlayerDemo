@@ -7,6 +7,7 @@
 //
 
 #import "NLProgressView.h"
+#import "NLVideoPlayer.h"
 
 @interface NLProgressView()
 

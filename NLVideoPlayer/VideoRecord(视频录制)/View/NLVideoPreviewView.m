@@ -8,7 +8,7 @@
 
 #import "NLVideoPreviewView.h"
 #import <AVFoundation/AVFoundation.h>
-#import "NLVideoRecordManager.h"
+#import "NLVideoPlayer.h"
 @interface NLVideoPreviewView()
 
 @property(nonatomic,strong)AVCaptureVideoPreviewLayer *previewLayer;

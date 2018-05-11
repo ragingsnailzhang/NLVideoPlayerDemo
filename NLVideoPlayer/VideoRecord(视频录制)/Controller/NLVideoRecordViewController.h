@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NLVideoPlayer.h"
 
 @interface NLVideoRecordViewController : UIViewController
+
+@property(nonatomic,strong)NLRecordParam *param;
+
 
 @end

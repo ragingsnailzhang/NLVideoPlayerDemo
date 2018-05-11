@@ -7,17 +7,9 @@
 //
 
 #import "NLVideoRecordViewController.h"
-#import "NLVideoPreviewView.h"
-#import "NLVideoRecordManager.h"
-#import "NLTimeView.h"
-#import "NLProgressView.h"
-#import "NLBottomOptionsView.h"
 #import <objc/runtime.h>
-#import "NLVideoPreviewViewController.h"
 
-#define MAX_RECORD_TIME 10.f
-
-@interface NLVideoRecordViewController ()<NLVideoRecordManagerDelegate,NLBottomOptionsViewDelegate>
+@interface NLVideoRecordViewController ()<NLVideoRecordManagerVCDelegate,NLBottomOptionsViewDelegate>
 
 @property(nonatomic,strong)UIButton *closeBtn;                       //关闭按钮
 @property(nonatomic,strong)UIButton *cameraBtn;                      //摄像头按钮
@@ -41,24 +33,35 @@
 }
 //准备录制
 -(void)readyRecordVideo{
-    [[NLVideoRecordManager shareVideoRecordManager] configVideoParamsWithPosition:AVCaptureDevicePositionBack Preset:AVCaptureSessionPresetHigh maxRecordTime:MAX_RECORD_TIME];
+    [[NLVideoRecordManager shareVideoRecordManager] configVideoParamsWithVideoRatio:self.param.ratio Position:self.param.position maxRecordTime:self.param.maxTime Compression:self.param.isCompression];
     [[NLVideoRecordManager shareVideoRecordManager]startSessionRunning];
-    [NLVideoRecordManager shareVideoRecordManager].delegate = self;
+    [NLVideoRecordManager shareVideoRecordManager].vcDelegate = self;
 }
 
 //MARK:ConfigureView
 -(void)configureView{
     //预览View
-    self.previewView = [[NLVideoPreviewView alloc]initWithFrame:self.view.frame];
+    CGRect rect = CGRectZero;
+    switch (self.param.ratio) {
+        case NLVideoVideoRatio4To3:
+            rect = CGRectMake(0, 0, kScreenW, kScreenW*4/3);
+            break;
+        case NLVideoVideoRatio16To9:
+            rect = CGRectMake(0, 0, kScreenW, kScreenW*16/9);
+            break;
+        case NLVideoVideoRatioFullScreen:
+            rect = CGRectMake(0, 0, kScreenW, kScreenH);
+            break;
+        default:
+            rect = self.view.frame;
+            break;
+    }
+    self.previewView = [[NLVideoPreviewView alloc]initWithFrame:rect];
     [self.view addSubview:self.previewView];
     
     //关闭按钮
     self.closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    if (@available(iOS 11.0, *)) {
-        self.closeBtn.frame = CGRectMake(MARGIN,SAFEAREA_TOP_HEIGH, 23, 23);
-    } else {
-        // Fallback on earlier versions
-    }
+    self.closeBtn.frame = CGRectMake(MARGIN,SAFEAREA_TOP_HEIGH, 23, 23);
     [self.closeBtn setImage:[UIImage imageNamed:@"record_close"] forState:UIControlStateNormal];
     [self.closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.closeBtn];
@@ -160,42 +163,45 @@
     [[NLVideoRecordManager shareVideoRecordManager]changeLightWithState:AVCaptureTorchModeOff];
 }
 //MARK:NLVideoRecordManagerDelegate
--(void)recordFinishedWithOutputFilePath:(NSURL *)filePath{
-    self.outputFilePath = filePath;
+-(void)recordFinishedWithOutputFilePath:(NSURL *)filePath RecordTime:(CGFloat)recordTime{
+    if (recordTime < self.param.minTime) {
+        UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"录制时长少于%fS,请重新录制!",self.param.minTime] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self cancleClick];
+        }];
+        [alter addAction:action];
+        [self presentViewController:alter animated:YES completion:nil];
+    }
     //结束录制
     [self recordFinished];
+    self.outputFilePath = filePath;
+
 }
 //更新时间状态
 -(void)reloadRecordTime:(CGFloat)time{
     self.timeView.hidden = time>0 ? NO:YES;
-    self.timeView.timeLab.text = [NSString stringWithFormat:@"%02ld秒",(NSInteger)floorf(time)];
-    [self.progressView updateProgressWithValue:time/MAX_RECORD_TIME];
+    self.timeView.timeLab.text = [NSString stringWithFormat:@"%02ld秒",(long)floorf(time)];
+    [self.progressView updateProgressWithValue:time/self.param.maxTime];
 }
 -(void)lightIsHidden:(BOOL)isHidden{
     self.lightBtn.hidden = isHidden;
 }
 //MARK:NLBottomOptionsViewDelegate
 -(void)selectedClick{
-    //保存录制到本地
-    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-        [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:self.outputFilePath];
-    } completionHandler:^(BOOL success, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"保存视频到相簿过程中发生错误，错误信息：%@",error.localizedDescription);
-        }else{
-            NSLog(@"成功保存视频到相簿.");
-        }
-    }];
+    //保存视频
+    [[NLVideoRecordManager shareVideoRecordManager]saveVideo];
     
     [self updateViewWithOptionsViewHidden:YES];
     [self reloadRecordTime:0];
     [self close];
+
 }
 -(void)previewClick{
     NLVideoPreviewViewController *page = [NLVideoPreviewViewController new];
     page.fileURL = self.outputFilePath;
     [self presentViewController:page animated:YES completion:nil];
 }
+
 -(void)cancleClick{
     [self updateViewWithOptionsViewHidden:YES];
     [self reloadRecordTime:0];

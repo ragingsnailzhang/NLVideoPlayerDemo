@@ -17,6 +17,9 @@
 		CA23597E209FEF7E0034E56F /* record_start@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA23597C209FEF7E0034E56F /* record_start@3x.png */; };
 		CA235981209FFA420034E56F /* record_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA23597F209FFA420034E56F /* record_close@2x.png */; };
 		CA235982209FFA420034E56F /* record_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA235980209FFA420034E56F /* record_close@3x.png */; };
+		CA63D14120A3DD3B00782EF2 /* NLFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63D14020A3DD3B00782EF2 /* NLFileManager.m */; };
+		CA63D14420A3EF4500782EF2 /* NLRecordParam.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63D14320A3EF4500782EF2 /* NLRecordParam.m */; };
+		CA63D14720A41BDD00782EF2 /* NLVideoUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63D14620A41BDD00782EF2 /* NLVideoUploadManager.m */; };
 		CA63E836209C04E100090A20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63E835209C04E100090A20 /* AppDelegate.m */; };
 		CA63E839209C04E100090A20 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63E838209C04E100090A20 /* ViewController.m */; };
 		CA63E83C209C04E100090A20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA63E83A209C04E100090A20 /* Main.storyboard */; };
@@ -77,6 +80,13 @@
 		CA23597C209FEF7E0034E56F /* record_start@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_start@3x.png"; sourceTree = "<group>"; };
 		CA23597F209FFA420034E56F /* record_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_close@2x.png"; sourceTree = "<group>"; };
 		CA235980209FFA420034E56F /* record_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_close@3x.png"; sourceTree = "<group>"; };
+		CA63D13F20A3DD3B00782EF2 /* NLFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLFileManager.h; sourceTree = "<group>"; };
+		CA63D14020A3DD3B00782EF2 /* NLFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLFileManager.m; sourceTree = "<group>"; };
+		CA63D14220A3EF4500782EF2 /* NLRecordParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLRecordParam.h; sourceTree = "<group>"; };
+		CA63D14320A3EF4500782EF2 /* NLRecordParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLRecordParam.m; sourceTree = "<group>"; };
+		CA63D14520A41BDD00782EF2 /* NLVideoUploadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLVideoUploadManager.h; sourceTree = "<group>"; };
+		CA63D14620A41BDD00782EF2 /* NLVideoUploadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLVideoUploadManager.m; sourceTree = "<group>"; };
+		CA63D14820A4394000782EF2 /* NLVideoPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLVideoPlayer.h; sourceTree = "<group>"; };
 		CA63E831209C04E100090A20 /* NLVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA63E834209C04E100090A20 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA63E835209C04E100090A20 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -184,6 +194,12 @@
 			children = (
 				CA235968209FE5DD0034E56F /* NLVideoRecordManager.h */,
 				CA235967209FE5DD0034E56F /* NLVideoRecordManager.m */,
+				CA63D14520A41BDD00782EF2 /* NLVideoUploadManager.h */,
+				CA63D14620A41BDD00782EF2 /* NLVideoUploadManager.m */,
+				CA63D14220A3EF4500782EF2 /* NLRecordParam.h */,
+				CA63D14320A3EF4500782EF2 /* NLRecordParam.m */,
+				CA63D13F20A3DD3B00782EF2 /* NLFileManager.h */,
+				CA63D14020A3DD3B00782EF2 /* NLFileManager.m */,
 			);
 			path = RecordManager;
 			sourceTree = "<group>";
@@ -217,6 +233,7 @@
 		CA235979209FEAB20034E56F /* Configure */ = {
 			isa = PBXGroup;
 			children = (
+				CA63D14820A4394000782EF2 /* NLVideoPlayer.h */,
 				CA23597A209FEACB0034E56F /* NLConfigure.h */,
 			);
 			path = Configure;
@@ -430,10 +447,13 @@
 				CA23596F209FE5DD0034E56F /* NLVideoRecordManager.m in Sources */,
 				CA235970209FE5DD0034E56F /* NLVideoRecordViewController.m in Sources */,
 				CAC67AAF20A03B230052A9DF /* NLBottomOptionsView.m in Sources */,
+				CA63D14120A3DD3B00782EF2 /* NLFileManager.m in Sources */,
 				CA235978209FE7040034E56F /* NLTimeView.m in Sources */,
 				CA63E839209C04E100090A20 /* ViewController.m in Sources */,
+				CA63D14720A41BDD00782EF2 /* NLVideoUploadManager.m in Sources */,
 				CA63E844209C04E300090A20 /* main.m in Sources */,
 				CAC67AAC209FFFB60052A9DF /* NLProgressView.m in Sources */,
+				CA63D14420A3EF4500782EF2 /* NLRecordParam.m in Sources */,
 				CA63E836209C04E100090A20 /* AppDelegate.m in Sources */,
 				CA235971209FE5DD0034E56F /* NLVideoPreviewView.m in Sources */,
 				CAC67ABE20A2CA3B0052A9DF /* NLVideoPreviewViewController.m in Sources */,
