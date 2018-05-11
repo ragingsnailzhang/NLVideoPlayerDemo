@@ -19,6 +19,7 @@
 
 @property(nonatomic,strong)NSURL *outputPath;                        //输出路径
 @property(nonatomic,assign)BOOL isCompression;                       //是否压缩
+@property (nonatomic, strong)UIViewController *pushVC;
 
 @end
 
@@ -40,9 +41,10 @@ static NLVideoRecordManager *manager = nil;
 }
 
 //MARK:配置参数
--(void)configVideoParamsWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime Compression:(BOOL)isCompression{
+-(void)configVideoParamsWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime Compression:(BOOL)isCompression PushVC:(UIViewController *)pushVC{
     //是否压缩视频质量
     self.isCompression = isCompression;
+    self.pushVC = pushVC;
     //设置分辨率
     AVCaptureSessionPreset preset = AVCaptureSessionPresetHigh;
     switch (ratio) {
@@ -239,6 +241,9 @@ static NLVideoRecordManager *manager = nil;
 
 //视频压缩
 -(void)videoCompressionWithQuality:(CompressionQuality)quality CompletionHandler:(void (^)(NSURL *))handler{
+    NLLoadingView *view = [NLLoadingView loadingViewWithTitle:@"正在压缩..." inView:self.pushVC.view];
+    [view startAnimating];
+    [self.pushVC.view addSubview:view];
     NSLog(@"before == %f M",[NLFileManager fileSize:self.outputPath]);
     NSString *presetName = AVAssetExportPresetMediumQuality;
     if (quality == lowQuality) {

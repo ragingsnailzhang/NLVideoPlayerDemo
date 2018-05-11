@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger,NLVideoRatio){
     NLVideoVideoRatio4To3,         // 4:3
@@ -25,8 +26,10 @@ typedef NS_ENUM(NSInteger,NLVideoRatio){
 //是否压缩
 @property(nonatomic,assign)BOOL isCompression;
 //视频比例
-@property (nonatomic, assign)NLVideoRatio ratio;
+@property(nonatomic,assign)NLVideoRatio ratio;
+//视频比例
+@property(nonatomic,strong)UIViewController *pushVC;
 
-+(instancetype)recordConfigWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime minRecordTime:(CGFloat)minTime Compression:(BOOL)isCompression;
++(instancetype)recordConfigWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime minRecordTime:(CGFloat)minTime Compression:(BOOL)isCompression PushVC:(UIViewController *)pushVC;
 
 @end

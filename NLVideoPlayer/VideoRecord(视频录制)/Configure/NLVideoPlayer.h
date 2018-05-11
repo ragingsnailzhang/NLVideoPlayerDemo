@@ -14,8 +14,10 @@
 #import "NLRecordParam.h"
 #import "NLFileManager.h"
 #import "NLVideoRecordManager.h"
+#import "NLVideoUploadManager.h"
 
 #import "NLTimeView.h"
+#import "NLLoadingView.h"
 #import "NLProgressView.h"
 #import "NLVideoPreviewView.h"
 #import "NLBottomOptionsView.h"

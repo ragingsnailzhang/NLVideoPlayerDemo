@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger,CompressionQuality) {
 +(UIViewController *)createRecordViewControllerWithRecordParam:(NLRecordParam *)param;
 
 //配置参数
--(void)configVideoParamsWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime Compression:(BOOL)isCompression;
+-(void)configVideoParamsWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime Compression:(BOOL)isCompression PushVC:(UIViewController *)pushVC;
 //开始画面采集
 -(void)startSessionRunning;
 //结束画面采集
