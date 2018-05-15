@@ -5,5 +5,6 @@ source 'https://github.com/aliyun/aliyun-specs.git'
 
 target 'NLVideoPlayer' do
     pod 'AFNetworking', '~> 3.1.0'
+    pod 'ZFPlayer', '~> 2.1.6'
 end
 
