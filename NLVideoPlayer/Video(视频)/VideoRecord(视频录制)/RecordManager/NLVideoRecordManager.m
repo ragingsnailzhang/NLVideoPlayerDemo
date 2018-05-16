@@ -17,9 +17,8 @@
 @property(nonatomic,strong)NSTimer *timer;                           //计时器
 @property(nonatomic,assign)CGFloat time;                             //时间
 
-@property(nonatomic,strong)NSURL *outputPath;                        //输出路径
-@property(nonatomic,assign)BOOL isCompression;                       //是否压缩
-@property (nonatomic, strong)UIViewController *currentVC;
+@property(nonatomic,strong)NLRecordParam *recordParam;
+@property(nonatomic,strong)NSURL *outputPath;
 
 @end
 
@@ -41,13 +40,12 @@ static NLVideoRecordManager *manager = nil;
 }
 
 //MARK:配置参数
--(void)configVideoParamsWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime Compression:(BOOL)isCompression CurrentVC:(UIViewController *)currentVC{
+-(void)configVideoParamsWithRecordParam:(NLRecordParam *)param{
     //是否压缩视频质量
-    self.isCompression = isCompression;
-    self.currentVC = currentVC;
+    self.recordParam = param;
     //设置分辨率
     AVCaptureSessionPreset preset = AVCaptureSessionPresetHigh;
-    switch (ratio) {
+    switch (self.recordParam.ratio) {
         case NLVideoVideoRatio4To3:
             preset = AVCaptureSessionPreset640x480;
             break;
@@ -65,11 +63,11 @@ static NLVideoRecordManager *manager = nil;
     
     [self.session beginConfiguration];
     //设置视频输入
-    [self setupVideoInputParamsPosition:position];
+    [self setupVideoInputParamsPosition:self.recordParam.position];
     //设置音频输入
     [self setupAudioInputParams];
     //设置输出源
-    [self setupVideoOutputWithMaxTime:maxTime minTime:1];
+    [self setupVideoOutputWithMaxTime:self.recordParam.maxTime minTime:self.recordParam.minTime];
     
     [self.session commitConfiguration];
 
@@ -188,61 +186,39 @@ static NLVideoRecordManager *manager = nil;
 //保存视频
 -(void)saveVideo{
     
-    if (self.isCompression) {
-        [self videoCompressionWithQuality:mediumQuality CompletionHandler:^(NSURL *outputURL) {
-            if (outputURL) {
-                
-                //保存录制到本地
-                [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-                    [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:outputURL];
-                } completionHandler:^(BOOL success, NSError * _Nullable error) {
-                    if (success) {NSLog(@"成功保存视频到相簿.");}
-                }];
-                
-                NSData *data = [NSData dataWithContentsOfURL:outputURL];
-                if (self.delegate && [self.delegate respondsToSelector:@selector(getVideoData:URL:)]) {
-                    [self.delegate getVideoData:data URL:outputURL];
-                }
-                
-                UIImage *cover = [self getThumbnailImage:outputURL];
-                if (self.delegate && [self.delegate respondsToSelector:@selector(getRecordVideoCoverURL:Image:)]) {
-                    [self.delegate getRecordVideoCoverURL:nil Image:cover];
-                }
-
-            }else{
-                if (self.delegate && [self.delegate respondsToSelector:@selector(getVideoData:URL:)]) {
-                    [self.delegate getVideoData:nil URL:nil];
-                }
-                
+    [self videoCompression:self.recordParam.isCompression Quality:mediumQuality CompletionHandler:^(NSURL *outputURL) {
+        if (outputURL) {
+            
+            //保存录制到本地
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:outputURL];
+            } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                if (success) {NSLog(@"成功保存视频到相簿.");}
+            }];
+            
+            NSData *data = [NSData dataWithContentsOfURL:outputURL];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(getVideoData:URL:)]) {
+                [self.delegate getVideoData:data URL:outputURL];
             }
-        }];
-
-    }else{
-        
-        //保存录制到本地
-        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-            [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:self.outputPath];
-        } completionHandler:^(BOOL success, NSError * _Nullable error) {
-            if (success) {NSLog(@"成功保存视频到相簿.");}
-        }];
-        
-        NSData *data = [NSData dataWithContentsOfURL:self.outputPath];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(getVideoData:URL:)]) {
-            [self.delegate getVideoData:data URL:self.outputPath];
+            
+            UIImage *cover = [self getThumbnailImage:outputURL];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(getRecordVideoCoverURL:Image:)]) {
+                [self.delegate getRecordVideoCoverURL:nil Image:cover];
+            }
+            
+        }else{
+            if (self.delegate && [self.delegate respondsToSelector:@selector(getVideoData:URL:)]) {
+                [self.delegate getVideoData:nil URL:nil];
+            }
+            
         }
-        
-        UIImage *cover = [self getThumbnailImage:self.outputPath];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(getRecordVideoCoverURL:Image:)]) {
-            [self.delegate getRecordVideoCoverURL:nil Image:cover];
-        }
-        
-    }
+    }];
 }
 
 //视频压缩
--(void)videoCompressionWithQuality:(CompressionQuality)quality CompletionHandler:(void (^)(NSURL *))handler{
-    [NLLoadingView loadingViewWithTitle:@"正在压缩..." inView:self.currentVC.view];
+-(void)videoCompression:(BOOL)isComorossion Quality:(CompressionQuality)quality CompletionHandler:(void (^)(NSURL *))handler{
     NSLog(@"before == %f M",[NLFileManager fileSize:self.outputPath]);
+    AVAssetExportSession *exportSession = nil;
     NSString *presetName = AVAssetExportPresetMediumQuality;
     if (quality == lowQuality) {
         presetName = AVAssetExportPresetLowQuality;
@@ -251,30 +227,34 @@ static NLVideoRecordManager *manager = nil;
     }else if (quality == highestQuality){
         presetName = AVAssetExportPresetHighestQuality;
     }
-    AVAsset *asset = [AVAsset assetWithURL:self.outputPath];
-    NSString *exportFileName = [self.outputPath.absoluteString componentsSeparatedByString:@"/"].lastObject;
-    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:asset presetName:presetName];
-    exportSession.shouldOptimizeForNetworkUse = YES;
-    NSString *folderPath = [NLFileManager folderPathWithName:COMPRESSION_VIDEO_FOLDER Path:[NLFileManager documentPath]];
-    NSString *filePath = [folderPath stringByAppendingPathComponent:exportFileName];
-    exportSession.outputURL = [NSURL fileURLWithPath:filePath];
-    exportSession.outputFileType = AVFileTypeMPEG4;
+    if (isComorossion) {//压缩
+        [NLLoadingView loadingViewWithTitle:@"正在压缩..." inView:self.recordParam.currentVC.view];
+        if (self.recordParam.waterMark) {//添加水印
+            exportSession = [[NLWaterMarkManager shareWaterMarkManager]addWaterMarkWithTitle:@"wz_yinglong" FilePath:self.outputPath PresetName:presetName];
+        }else{
+            AVAsset *asset = [AVAsset assetWithURL:self.outputPath];
+            NSString *exportFileName = [self.outputPath.absoluteString componentsSeparatedByString:@"/"].lastObject;
+            exportSession = [[AVAssetExportSession alloc]initWithAsset:asset presetName:presetName];
+            exportSession.shouldOptimizeForNetworkUse = YES;
+            NSString *folderPath = [NLFileManager folderPathWithName:COMPRESSION_VIDEO_FOLDER Path:[NLFileManager documentPath]];
+            NSString *filePath = [folderPath stringByAppendingPathComponent:exportFileName];
+            exportSession.outputURL = [NSURL fileURLWithPath:filePath];
+            exportSession.outputFileType = AVFileTypeMPEG4;
+        }
+        
+    }else{
+        if (self.recordParam.waterMark) {//添加水印
+            exportSession = [[NLWaterMarkManager shareWaterMarkManager]addWaterMarkWithTitle:@"wz_yinglong" FilePath:self.outputPath PresetName:AVAssetExportPresetHighestQuality];
+        }else{
+            if (handler) {
+                handler(self.outputPath);
+            }
+        }
+    }
     
     [exportSession exportAsynchronouslyWithCompletionHandler:^{
         
         switch (exportSession.status) {
-            case AVAssetExportSessionStatusCancelled:
-                NSLog(@"AVAssetExportSessionStatusCancelled");
-                break;
-            case AVAssetExportSessionStatusUnknown:
-                NSLog(@"AVAssetExportSessionStatusUnknown");
-                break;
-            case AVAssetExportSessionStatusWaiting:
-                NSLog(@"AVAssetExportSessionStatusWaiting");
-                break;
-            case AVAssetExportSessionStatusExporting:
-                NSLog(@"AVAssetExportSessionStatusExporting");
-                break;
             case AVAssetExportSessionStatusCompleted:
                 NSLog(@"AVAssetExportSessionStatusCompleted");
                 NSLog(@"after == %f M",[NLFileManager fileSize:exportSession.outputURL]);
@@ -282,15 +262,15 @@ static NLVideoRecordManager *manager = nil;
                     handler(exportSession.outputURL);
                 }
                 break;
-            case AVAssetExportSessionStatusFailed:
+            default:
                 NSLog(@"AVAssetExportSessionStatusFailed");
                 if (handler) {
                     handler(nil);
                 }
                 break;
         }
-        
     }];
+
 }
 
 

@@ -32,8 +32,10 @@
 
 //MARK:文件夹名称
 //原始文件存放文件夹
-#define VIDEO_FOLDER  @"videoFolder"
+#define VIDEO_FOLDER  @"VideoFolder"
 //压缩文件存放文件夹
-#define COMPRESSION_VIDEO_FOLDER  @"compressionVideoFolder"
+#define COMPRESSION_VIDEO_FOLDER  @"CompressionVideoFolder"
+//编辑文件存放文件夹
+#define EDIT_VIDEO_FOLDER  @"EditVideoFolder"
 
 #endif /* NLConfigure_h */

@@ -25,6 +25,7 @@
 #import "NLVideoPreviewViewController.h"
 
 #import "TBMoviePlayer.h"
+#import "NLWaterMarkManager.h"
 
 
 #endif /* NLVideoPlayer_h */

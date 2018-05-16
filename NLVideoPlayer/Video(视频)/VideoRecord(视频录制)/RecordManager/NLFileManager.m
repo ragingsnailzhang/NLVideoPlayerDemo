@@ -7,6 +7,7 @@
 //
 
 #import "NLFileManager.h"
+#import "NLConfigure.h"
 @implementation NLFileManager
 
 +(NSString *)documentPath{
@@ -31,6 +32,42 @@
 +(CGFloat)fileSize:(NSURL *)path{
     return [[NSData dataWithContentsOfURL:path] length]/1024.00 /1024.00;
 }
+
++(void)clearMemoryFile{
+    NSArray *subFiles = [self listFilesInDirectoryAtPath:[self documentPath] deep:NO];
+    BOOL isSuccess = YES;
+    
+    for (NSString *file in subFiles) {
+        NSString *absolutePath = [[self documentPath] stringByAppendingPathComponent:file];
+        isSuccess = [[NSFileManager defaultManager]removeItemAtPath:absolutePath error:nil];
+    }
+}
+
+#pragma mark - 遍历文件夹
++ (NSArray *)listFilesInDirectoryAtPath:(NSString *)path deep:(BOOL)deep {
+    NSArray *listArr;
+    NSError *error;
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if (deep) {
+        // 深遍历
+        NSArray *deepArr = [manager subpathsOfDirectoryAtPath:path error:&error];
+        if (!error) {
+            listArr = deepArr;
+        }else {
+            listArr = nil;
+        }
+    }else {
+        // 浅遍历
+        NSArray *shallowArr = [manager contentsOfDirectoryAtPath:path error:&error];
+        if (!error) {
+            listArr = shallowArr;
+        }else {
+            listArr = nil;
+        }
+    }
+    return listArr;
+}
+
 
 
 

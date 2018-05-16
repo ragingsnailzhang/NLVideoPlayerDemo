@@ -10,13 +10,14 @@
 
 @implementation NLRecordParam
 
-+(instancetype)recordConfigWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime minRecordTime:(CGFloat)minTime Compression:(BOOL)isCompression CurrentVC:(UIViewController *)currentVC{
++(instancetype)recordConfigWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime minRecordTime:(CGFloat)minTime Compression:(BOOL)isCompression WaterMark:(NSString *)waterMark CurrentVC:(UIViewController *)currentVC{
     NLRecordParam *params = [[NLRecordParam alloc]init];
     params.ratio = ratio;
     params.position = position;
     params.maxTime = maxTime;
     params.minTime = minTime;
     params.isCompression = isCompression;
+    params.waterMark = waterMark;
     params.currentVC = currentVC;
     return params;
 }

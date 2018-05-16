@@ -7,10 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "NLVideoRecordViewController.h"
-#import "NLRecordParam.h"
-#import "NLVideoRecordManager.h"
-#import "NLConfigure.h"
 #import "NLVideoPlayer.h"
 @interface ViewController ()<NLVideoRecordManagerDelegate>
 
@@ -55,11 +51,18 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(playVideo)];
     [imgView addGestureRecognizer:tap];
     
+    UIButton *clearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    clearBtn.frame = CGRectMake((self.view.frame.size.width-100)/2, self.view.frame.size.height-100, 100, 40);
+    [clearBtn setTitle:@"清除" forState:UIControlStateNormal];
+    [clearBtn setBackgroundColor:[UIColor redColor]];
+    [clearBtn addTarget:self action:@selector(clearClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:clearBtn];
+    
     
 }
 -(void)recordClick{
     self.uploadBtn.enabled = YES;
-    NLRecordParam *param = [NLRecordParam recordConfigWithVideoRatio:NLVideoVideoRatioFullScreen Position:AVCaptureDevicePositionBack maxRecordTime:10.f minRecordTime:1.f Compression:YES CurrentVC:self];
+    NLRecordParam *param = [NLRecordParam recordConfigWithVideoRatio:NLVideoVideoRatioFullScreen Position:AVCaptureDevicePositionBack maxRecordTime:10.f minRecordTime:1.f Compression:YES WaterMark:nil CurrentVC:self];
     UIViewController *recordVC = [NLVideoRecordManager createRecordViewControllerWithRecordParam:param];
     [NLVideoRecordManager shareVideoRecordManager].delegate = self;
     [self presentViewController:recordVC animated:YES completion:nil];
@@ -95,7 +98,7 @@
     NLLoadingView *loadingView = [NLLoadingView loadingViewWithTitle:@"正在上传..." inView:self.view];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    [NLVideoUploadManager requestDataNetWorkWithMethod:POSTFILE APIMethod:@"chenggou.file.upload" Params:params Domain:@"https://xxx.com/router/rest" constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [NLVideoUploadManager requestDataNetWorkWithMethod:POSTFILE APIMethod:@"xxx.file.upload" Params:params Domain:@"https://xxx.com/router/rest" constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         [formData appendPartWithFileData:self.fileData name:@"file" fileName:@"video.mp4" mimeType:@"video/mp4"];
         
@@ -124,6 +127,11 @@
     //playVC.model.placeholderImage = img; //初始加载时封面
     [self presentViewController:playerVC animated:YES completion:nil];
 }
+
+-(void)clearClick{
+    [NLFileManager clearMemoryFile];
+}
+
 
 
 

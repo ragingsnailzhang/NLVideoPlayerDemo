@@ -33,7 +33,7 @@
 }
 //准备录制
 -(void)readyRecordVideo{
-    [[NLVideoRecordManager shareVideoRecordManager] configVideoParamsWithVideoRatio:self.param.ratio Position:self.param.position maxRecordTime:self.param.maxTime Compression:self.param.isCompression CurrentVC:self.param.currentVC];
+    [[NLVideoRecordManager shareVideoRecordManager] configVideoParamsWithRecordParam:self.param];
     [[NLVideoRecordManager shareVideoRecordManager]startSessionRunning];
     [NLVideoRecordManager shareVideoRecordManager].vcDelegate = self;
 }

@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+#import "NLVideoPlayer.h"
+#import <Photos/Photos.h>
 
 @interface NLWaterMarkManager : NSObject
+
++(NLWaterMarkManager *)shareWaterMarkManager;
+
+-(AVAssetExportSession *)addWaterMarkWithTitle:(NSString *)waterMarkStr FilePath:(NSURL *)filePath PresetName:(NSString *)presetName;
 
 @end

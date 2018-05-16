@@ -11,14 +11,15 @@
 
 
 @interface NLFileManager : NSObject
-
+//document路径
 +(NSString *)documentPath;
-
+//caches路径
 +(NSString *)cachesPath;
-
+//文件夹路径
 +(NSString *)folderPathWithName:(NSString *)folderName Path:(NSString *)path;
-
 //计算压缩大小
 +(CGFloat)fileSize:(NSURL *)path;
+//清除缓存
++(void)clearMemoryFile;
 
 @end

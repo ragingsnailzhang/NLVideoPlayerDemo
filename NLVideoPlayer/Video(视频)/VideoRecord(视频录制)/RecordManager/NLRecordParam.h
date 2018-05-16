@@ -27,9 +27,11 @@ typedef NS_ENUM(NSInteger,NLVideoRatio){
 @property(nonatomic,assign)BOOL isCompression;
 //视频比例
 @property(nonatomic,assign)NLVideoRatio ratio;
+//水印文字
+@property(nonatomic,strong)NSString *waterMark;
 //当前界面
 @property(nonatomic,strong)UIViewController *currentVC;
 
-+(instancetype)recordConfigWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime minRecordTime:(CGFloat)minTime Compression:(BOOL)isCompression CurrentVC:(UIViewController *)currentVC;
++(instancetype)recordConfigWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime minRecordTime:(CGFloat)minTime Compression:(BOOL)isCompression WaterMark:(NSString *)waterMark CurrentVC:(UIViewController *)currentVC;
 
 @end
