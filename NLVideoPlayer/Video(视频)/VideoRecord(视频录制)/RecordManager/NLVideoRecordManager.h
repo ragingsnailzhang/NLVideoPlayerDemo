@@ -29,12 +29,16 @@ typedef NS_ENUM(NSInteger,CompressionQuality) {
 @end
 
 @protocol NLVideoRecordManagerDelegate <NSObject>
+
+@optional
 //获取视频数据流
 -(void)getVideoData:(NSData *)outputData URL:(NSURL *)outputURL;
 //录制时间
 -(void)getRecordTime:(CGFloat)time;
 //录制封面
 -(void)getRecordVideoCoverURL:(NSURL *)coverURL Image:(UIImage *)coverImage;
+//获取视频数据流,录制封面
+-(void)getVideoData:(NSData *)outputData DataURL:(NSURL *)outputURL CoverURL:(NSURL *)coverURL Image:(UIImage *)coverImage;
 
 @end
 
@@ -68,5 +72,7 @@ typedef NS_ENUM(NSInteger,CompressionQuality) {
 -(void)removeOutputAndInput;
 //保存视频
 -(void)saveVideo;
+//视频压缩
+-(void)videoCompressionURL:(NSURL *)videoURL CompletionHandler:(void (^)(NSURL *))handler;
 
 @end

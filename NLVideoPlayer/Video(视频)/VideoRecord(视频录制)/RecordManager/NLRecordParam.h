@@ -31,7 +31,10 @@ typedef NS_ENUM(NSInteger,NLVideoRatio){
 @property(nonatomic,strong)NSString *waterMark;
 //当前界面
 @property(nonatomic,strong)UIViewController *currentVC;
+//不带水印
++(instancetype)recordConfigWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime minRecordTime:(CGFloat)minTime Compression:(BOOL)isCompression CurrentVC:(UIViewController *)currentVC;
 
+//带水印
 +(instancetype)recordConfigWithVideoRatio:(NLVideoRatio)ratio Position:(AVCaptureDevicePosition)position maxRecordTime:(CGFloat)maxTime minRecordTime:(CGFloat)minTime Compression:(BOOL)isCompression WaterMark:(NSString *)waterMark CurrentVC:(UIViewController *)currentVC;
 
 @end

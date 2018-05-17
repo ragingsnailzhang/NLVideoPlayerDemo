@@ -82,8 +82,9 @@ static NLWaterMarkManager *manager = nil;
     
     // 5 - 视频文件输出
     AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:presetName];
-    NSString *folderPath = [NLFileManager folderPathWithName:EDIT_VIDEO_FOLDER Path:[NLFileManager documentPath]];
-    NSURL *fileURL = [NSURL fileURLWithPath:[folderPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.mp4",time(0)]]];
+    NSString *exportFileName = [filePath.absoluteString componentsSeparatedByString:@"/"].lastObject;
+    NSString *folderPath = [NLFileManager folderPathWithName:VIDEO_FOLDER Path:[NLFileManager documentPath]];
+    NSURL *fileURL = [NSURL fileURLWithPath:[folderPath stringByAppendingPathComponent:[NSString stringWithFormat:@"edit_%@",exportFileName]]];
     exporter.outputURL = fileURL;
     exporter.outputFileType = AVFileTypeMPEG4;
     exporter.shouldOptimizeForNetworkUse = YES;

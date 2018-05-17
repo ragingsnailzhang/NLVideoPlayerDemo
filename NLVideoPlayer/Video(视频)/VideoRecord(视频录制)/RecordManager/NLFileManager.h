@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
-
+#import <Photos/Photos.h>
 
 @interface NLFileManager : NSObject
 //document路径
@@ -21,5 +21,11 @@
 +(CGFloat)fileSize:(NSURL *)path;
 //清除缓存
 +(void)clearMemoryFile;
+//取得视频封面
++(UIImage *)getThumbnailImage:(NSURL *)videoURL;
+//取得视频封面路径
++(NSString *)getVideoCoverWithImage:(UIImage *)image AndName:(NSString *)imgName;
+//获取视频时长
++(NSUInteger)durationWithVideo:(NSURL *)videoUrl;
 
 @end

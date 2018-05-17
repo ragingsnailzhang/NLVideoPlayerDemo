@@ -98,7 +98,7 @@
     NLLoadingView *loadingView = [NLLoadingView loadingViewWithTitle:@"正在上传..." inView:self.view];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    [NLVideoUploadManager requestDataNetWorkWithMethod:POSTFILE APIMethod:@"xxx.file.upload" Params:params Domain:@"https://xxx.com/router/rest" constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [NLVideoUploadManager requestDataNetWorkWithMethod:Video_POSTFILE APIMethod:@"xxx.file.upload" Params:params Domain:@"https://xxx.com/router/rest" constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         [formData appendPartWithFileData:self.fileData name:@"file" fileName:@"video.mp4" mimeType:@"video/mp4"];
         

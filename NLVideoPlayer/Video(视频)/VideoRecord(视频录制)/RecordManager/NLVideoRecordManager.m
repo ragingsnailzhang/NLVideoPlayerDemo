@@ -16,7 +16,7 @@
 @property(nonatomic,strong)AVCaptureMovieFileOutput *fileOutput;     //文件输出
 @property(nonatomic,strong)NSTimer *timer;                           //计时器
 @property(nonatomic,assign)CGFloat time;                             //时间
-
+@property(nonatomic,strong)UIView *inView;                           //当前界面
 @property(nonatomic,strong)NLRecordParam *recordParam;
 @property(nonatomic,strong)NSURL *outputPath;
 
@@ -188,7 +188,6 @@ static NLVideoRecordManager *manager = nil;
     
     [self videoCompression:self.recordParam.isCompression Quality:mediumQuality CompletionHandler:^(NSURL *outputURL) {
         if (outputURL) {
-            
             //保存录制到本地
             [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
                 [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:outputURL];
@@ -201,16 +200,20 @@ static NLVideoRecordManager *manager = nil;
                 [self.delegate getVideoData:data URL:outputURL];
             }
             
-            UIImage *cover = [self getThumbnailImage:outputURL];
+            UIImage *cover = [NLFileManager getThumbnailImage:outputURL];
+            NSString *localCoverPath = [NLFileManager getVideoCoverWithImage:cover AndName:[self.outputPath.absoluteString componentsSeparatedByString:@"/"].lastObject];
+            
             if (self.delegate && [self.delegate respondsToSelector:@selector(getRecordVideoCoverURL:Image:)]) {
-                [self.delegate getRecordVideoCoverURL:nil Image:cover];
+                [self.delegate getRecordVideoCoverURL:[NSURL URLWithString:localCoverPath] Image:cover];
+            }
+            if (self.delegate && [self.delegate respondsToSelector:@selector(getVideoData:DataURL:CoverURL:Image:)]) {
+                [self.delegate getVideoData:data DataURL:outputURL CoverURL:[NSURL URLWithString:localCoverPath] Image:cover];
             }
             
         }else{
             if (self.delegate && [self.delegate respondsToSelector:@selector(getVideoData:URL:)]) {
                 [self.delegate getVideoData:nil URL:nil];
             }
-            
         }
     }];
 }
@@ -228,23 +231,43 @@ static NLVideoRecordManager *manager = nil;
         presetName = AVAssetExportPresetHighestQuality;
     }
     if (isComorossion) {//压缩
-        [NLLoadingView loadingViewWithTitle:@"正在压缩..." inView:self.recordParam.currentVC.view];
+        if (![NSThread currentThread].isMainThread) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.recordParam.currentVC.view) {
+                    self.inView = self.recordParam.currentVC.view;
+                }else{
+                    self.inView = [UIApplication sharedApplication].keyWindow.rootViewController.childViewControllers.lastObject.view;
+                }
+                [NLLoadingView loadingViewWithTitle:@"正在压缩..." inView:self.inView];
+            });
+        }else{
+            if (self.recordParam.currentVC.view) {
+                self.inView = self.recordParam.currentVC.view;
+            }else{
+                self.inView = [UIApplication sharedApplication].keyWindow.rootViewController.childViewControllers.lastObject.view;
+            }
+            [NLLoadingView loadingViewWithTitle:@"正在压缩..." inView:self.inView];
+        }
+        
         if (self.recordParam.waterMark) {//添加水印
-            exportSession = [[NLWaterMarkManager shareWaterMarkManager]addWaterMarkWithTitle:@"wz_yinglong" FilePath:self.outputPath PresetName:presetName];
+            exportSession = [[NLWaterMarkManager shareWaterMarkManager]addWaterMarkWithTitle:self.recordParam.waterMark FilePath:self.outputPath PresetName:presetName];
         }else{
             AVAsset *asset = [AVAsset assetWithURL:self.outputPath];
             NSString *exportFileName = [self.outputPath.absoluteString componentsSeparatedByString:@"/"].lastObject;
+            if ([[exportFileName lowercaseString]hasSuffix:@".mov"]) {
+                exportFileName = [NSString stringWithFormat:@"%@.mp4",[[exportFileName lowercaseString] componentsSeparatedByString:@".mov"].firstObject];
+            }
             exportSession = [[AVAssetExportSession alloc]initWithAsset:asset presetName:presetName];
             exportSession.shouldOptimizeForNetworkUse = YES;
-            NSString *folderPath = [NLFileManager folderPathWithName:COMPRESSION_VIDEO_FOLDER Path:[NLFileManager documentPath]];
-            NSString *filePath = [folderPath stringByAppendingPathComponent:exportFileName];
+            NSString *folderPath = [NLFileManager folderPathWithName:VIDEO_FOLDER Path:[NLFileManager documentPath]];
+            NSString *filePath = [folderPath stringByAppendingPathComponent:[NSString stringWithFormat:@"compression_%ld_%@",time(0),exportFileName]];
             exportSession.outputURL = [NSURL fileURLWithPath:filePath];
             exportSession.outputFileType = AVFileTypeMPEG4;
         }
         
     }else{
         if (self.recordParam.waterMark) {//添加水印
-            exportSession = [[NLWaterMarkManager shareWaterMarkManager]addWaterMarkWithTitle:@"wz_yinglong" FilePath:self.outputPath PresetName:AVAssetExportPresetHighestQuality];
+            exportSession = [[NLWaterMarkManager shareWaterMarkManager]addWaterMarkWithTitle:self.recordParam.waterMark FilePath:self.outputPath PresetName:AVAssetExportPresetHighestQuality];
         }else{
             if (handler) {
                 handler(self.outputPath);
@@ -253,7 +276,23 @@ static NLVideoRecordManager *manager = nil;
     }
     
     [exportSession exportAsynchronouslyWithCompletionHandler:^{
-        
+        if ([NSThread currentThread].isMainThread) {
+            for (UIView *view in self.inView.subviews) {
+                if ([view isMemberOfClass:[NLLoadingView class]]) {
+                    [(NLLoadingView *)view stopAnimating];
+                    [view removeFromSuperview];
+                }
+            }
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for (UIView *view in self.inView.subviews) {
+                    if ([view isMemberOfClass:[NLLoadingView class]]) {
+                        [(NLLoadingView *)view stopAnimating];
+                        [view removeFromSuperview];
+                    }
+                }
+            });
+        }
         switch (exportSession.status) {
             case AVAssetExportSessionStatusCompleted:
                 NSLog(@"AVAssetExportSessionStatusCompleted");
@@ -271,6 +310,12 @@ static NLVideoRecordManager *manager = nil;
         }
     }];
 
+}
+
+//视频压缩
+-(void)videoCompressionURL:(NSURL *)videoURL CompletionHandler:(void (^)(NSURL *))handler{
+    self.outputPath = videoURL;
+    [self videoCompression:YES Quality:mediumQuality CompletionHandler:handler];
 }
 
 
@@ -322,30 +367,5 @@ static NLVideoRecordManager *manager = nil;
     }
     return nil;
 }
--(UIImage *)getThumbnailImage:(NSURL *)videoPath {
-    if (videoPath) {
-        AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoPath options:nil];
-        AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-        // 设定缩略图的方向
-        // 如果不设定，可能会在视频旋转90/180/270°时，获取到的缩略图是被旋转过的，而不是正向的
-        gen.appliesPreferredTrackTransform = YES;
-        // 设置图片的最大size(分辨率)
-        CMTime time = CMTimeMakeWithSeconds(1.f, 600); //取第1秒，一秒钟600帧
-        NSError *error = nil;
-        CMTime actualTime;
-        CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
-        if (error) {
-            UIImage *placeHoldImg = [UIImage imageNamed:@"posters_default_horizontal"];
-            return placeHoldImg;
-        }
-        UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
-        CGImageRelease(image);
-        return thumb;
-    } else {
-        UIImage *placeHoldImg = [UIImage imageNamed:@"posters_default_horizontal"];
-        return placeHoldImg;
-    }
-}
-
 
 @end

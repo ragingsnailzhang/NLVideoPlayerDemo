@@ -16,40 +16,40 @@
 		CA63E844209C04E300090A20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63E843209C04E300090A20 /* main.m */; };
 		CA63E84E209C04E300090A20 /* NLVideoPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63E84D209C04E300090A20 /* NLVideoPlayerTests.m */; };
 		CA63E859209C04E300090A20 /* NLVideoPlayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63E858209C04E300090A20 /* NLVideoPlayerUITests.m */; };
-		CAB8879C20AAAB3700088214 /* TBMoviePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8876020AAAB3600088214 /* TBMoviePlayer.m */; };
-		CAB8879D20AAAB3700088214 /* record_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876420AAAB3600088214 /* record_close@3x.png */; };
-		CAB8879E20AAAB3700088214 /* time_ sign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876520AAAB3600088214 /* time_ sign@3x.png */; };
-		CAB8879F20AAAB3700088214 /* time_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876620AAAB3600088214 /* time_sign@2x.png */; };
-		CAB887A020AAAB3700088214 /* record_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876720AAAB3600088214 /* record_camera@2x.png */; };
-		CAB887A120AAAB3700088214 /* record_camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876820AAAB3600088214 /* record_camera@3x.png */; };
-		CAB887A220AAAB3700088214 /* record_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876920AAAB3600088214 /* record_close@2x.png */; };
-		CAB887A320AAAB3700088214 /* record_light_auto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876A20AAAB3600088214 /* record_light_auto@3x.png */; };
-		CAB887A420AAAB3700088214 /* record_light_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876B20AAAB3600088214 /* record_light_off@3x.png */; };
-		CAB887A520AAAB3700088214 /* record_light_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876C20AAAB3600088214 /* record_light_off@2x.png */; };
-		CAB887A620AAAB3700088214 /* record_light_auto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876D20AAAB3600088214 /* record_light_auto@2x.png */; };
-		CAB887A720AAAB3700088214 /* record_light_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876E20AAAB3600088214 /* record_light_on@2x.png */; };
-		CAB887A820AAAB3700088214 /* record_save@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8876F20AAAB3600088214 /* record_save@3x.png */; };
-		CAB887A920AAAB3700088214 /* record_cancle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8877020AAAB3600088214 /* record_cancle@3x.png */; };
-		CAB887AA20AAAB3700088214 /* record_cancle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8877120AAAB3600088214 /* record_cancle@2x.png */; };
-		CAB887AB20AAAB3700088214 /* record_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8877220AAAB3600088214 /* record_save@2x.png */; };
-		CAB887AC20AAAB3700088214 /* record_light_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8877320AAAB3600088214 /* record_light_on@3x.png */; };
-		CAB887AD20AAAB3700088214 /* record_preview@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8877420AAAB3600088214 /* record_preview@3x.png */; };
-		CAB887AE20AAAB3700088214 /* record_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8877520AAAB3600088214 /* record_start@2x.png */; };
-		CAB887AF20AAAB3700088214 /* record_start@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8877620AAAB3600088214 /* record_start@3x.png */; };
-		CAB887B020AAAB3700088214 /* record_preview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8877720AAAB3600088214 /* record_preview@2x.png */; };
-		CAB887B120AAAB3700088214 /* NLVideoRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8877920AAAB3600088214 /* NLVideoRecordManager.m */; };
-		CAB887B220AAAB3700088214 /* NLRecordParam.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8877C20AAAB3600088214 /* NLRecordParam.m */; };
-		CAB887B320AAAB3700088214 /* NLFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8877E20AAAB3600088214 /* NLFileManager.m */; };
-		CAB887B420AAAB3700088214 /* NLVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8878220AAAB3600088214 /* NLVideoRecordViewController.m */; };
-		CAB887B520AAAB3700088214 /* NLVideoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8878320AAAB3600088214 /* NLVideoPreviewViewController.m */; };
-		CAB887B620AAAB3700088214 /* NLTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8878620AAAB3600088214 /* NLTimeView.m */; };
-		CAB887B720AAAB3700088214 /* NLBottomOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8878720AAAB3600088214 /* NLBottomOptionsView.m */; };
-		CAB887B820AAAB3700088214 /* NLLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8878820AAAB3600088214 /* NLLoadingView.m */; };
-		CAB887B920AAAB3700088214 /* NLProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8878B20AAAB3600088214 /* NLProgressView.m */; };
-		CAB887BA20AAAB3700088214 /* NLVideoPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8878E20AAAB3600088214 /* NLVideoPreviewView.m */; };
-		CAB887BB20AAAB3700088214 /* NLVideoUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8879120AAAB3600088214 /* NLVideoUploadManager.m */; };
-		CAB887BC20AAAB3700088214 /* AFHTTPSessionManager+ShareSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8879220AAAB3600088214 /* AFHTTPSessionManager+ShareSessionManager.m */; };
-		CAB887BD20AAAB3700088214 /* NLWaterMarkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8879720AAAB3600088214 /* NLWaterMarkManager.m */; };
+		CAB888CD20AD80AB00088214 /* NLWaterMarkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB8889120AD80AB00088214 /* NLWaterMarkManager.m */; };
+		CAB888CE20AD80AB00088214 /* record_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889520AD80AB00088214 /* record_close@3x.png */; };
+		CAB888CF20AD80AB00088214 /* time_ sign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889620AD80AB00088214 /* time_ sign@3x.png */; };
+		CAB888D020AD80AB00088214 /* time_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889720AD80AB00088214 /* time_sign@2x.png */; };
+		CAB888D120AD80AB00088214 /* record_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889820AD80AB00088214 /* record_camera@2x.png */; };
+		CAB888D220AD80AB00088214 /* record_camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889920AD80AB00088214 /* record_camera@3x.png */; };
+		CAB888D320AD80AB00088214 /* record_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889A20AD80AB00088214 /* record_close@2x.png */; };
+		CAB888D420AD80AB00088214 /* record_light_auto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889B20AD80AB00088214 /* record_light_auto@3x.png */; };
+		CAB888D520AD80AB00088214 /* record_light_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889C20AD80AB00088214 /* record_light_off@3x.png */; };
+		CAB888D620AD80AB00088214 /* record_light_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889D20AD80AB00088214 /* record_light_off@2x.png */; };
+		CAB888D720AD80AB00088214 /* record_light_auto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889E20AD80AB00088214 /* record_light_auto@2x.png */; };
+		CAB888D820AD80AB00088214 /* record_light_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB8889F20AD80AB00088214 /* record_light_on@2x.png */; };
+		CAB888D920AD80AB00088214 /* record_save@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB888A020AD80AB00088214 /* record_save@3x.png */; };
+		CAB888DA20AD80AB00088214 /* record_cancle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB888A120AD80AB00088214 /* record_cancle@3x.png */; };
+		CAB888DB20AD80AB00088214 /* record_cancle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB888A220AD80AB00088214 /* record_cancle@2x.png */; };
+		CAB888DC20AD80AB00088214 /* record_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB888A320AD80AB00088214 /* record_save@2x.png */; };
+		CAB888DD20AD80AB00088214 /* record_light_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB888A420AD80AB00088214 /* record_light_on@3x.png */; };
+		CAB888DE20AD80AB00088214 /* record_preview@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB888A520AD80AB00088214 /* record_preview@3x.png */; };
+		CAB888DF20AD80AB00088214 /* record_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB888A620AD80AB00088214 /* record_start@2x.png */; };
+		CAB888E020AD80AB00088214 /* record_start@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB888A720AD80AB00088214 /* record_start@3x.png */; };
+		CAB888E120AD80AB00088214 /* record_preview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB888A820AD80AB00088214 /* record_preview@2x.png */; };
+		CAB888E220AD80AB00088214 /* NLVideoRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888AA20AD80AB00088214 /* NLVideoRecordManager.m */; };
+		CAB888E320AD80AB00088214 /* NLRecordParam.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888AD20AD80AB00088214 /* NLRecordParam.m */; };
+		CAB888E420AD80AB00088214 /* NLFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888AF20AD80AB00088214 /* NLFileManager.m */; };
+		CAB888E520AD80AB00088214 /* NLVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888B320AD80AB00088214 /* NLVideoRecordViewController.m */; };
+		CAB888E620AD80AB00088214 /* NLVideoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888B420AD80AB00088214 /* NLVideoPreviewViewController.m */; };
+		CAB888E720AD80AB00088214 /* NLTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888B720AD80AB00088214 /* NLTimeView.m */; };
+		CAB888E820AD80AB00088214 /* NLBottomOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888B820AD80AB00088214 /* NLBottomOptionsView.m */; };
+		CAB888E920AD80AB00088214 /* NLLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888B920AD80AB00088214 /* NLLoadingView.m */; };
+		CAB888EA20AD80AB00088214 /* NLProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888BC20AD80AB00088214 /* NLProgressView.m */; };
+		CAB888EB20AD80AB00088214 /* NLVideoPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888BF20AD80AB00088214 /* NLVideoPreviewView.m */; };
+		CAB888EC20AD80AB00088214 /* TBMoviePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888C220AD80AB00088214 /* TBMoviePlayer.m */; };
+		CAB888ED20AD80AB00088214 /* NLVideoUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888C620AD80AB00088214 /* NLVideoUploadManager.m */; };
+		CAB888EE20AD80AB00088214 /* AFHTTPSessionManager+ShareSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB888C720AD80AB00088214 /* AFHTTPSessionManager+ShareSessionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,56 +87,56 @@
 		CA63E854209C04E300090A20 /* NLVideoPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NLVideoPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA63E858209C04E300090A20 /* NLVideoPlayerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLVideoPlayerUITests.m; sourceTree = "<group>"; };
 		CA63E85A209C04E300090A20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CAB8876020AAAB3600088214 /* TBMoviePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMoviePlayer.m; sourceTree = "<group>"; };
-		CAB8876120AAAB3600088214 /* TBMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMoviePlayer.h; sourceTree = "<group>"; };
-		CAB8876420AAAB3600088214 /* record_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_close@3x.png"; sourceTree = "<group>"; };
-		CAB8876520AAAB3600088214 /* time_ sign@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time_ sign@3x.png"; sourceTree = "<group>"; };
-		CAB8876620AAAB3600088214 /* time_sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time_sign@2x.png"; sourceTree = "<group>"; };
-		CAB8876720AAAB3600088214 /* record_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_camera@2x.png"; sourceTree = "<group>"; };
-		CAB8876820AAAB3600088214 /* record_camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_camera@3x.png"; sourceTree = "<group>"; };
-		CAB8876920AAAB3600088214 /* record_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_close@2x.png"; sourceTree = "<group>"; };
-		CAB8876A20AAAB3600088214 /* record_light_auto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_auto@3x.png"; sourceTree = "<group>"; };
-		CAB8876B20AAAB3600088214 /* record_light_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_off@3x.png"; sourceTree = "<group>"; };
-		CAB8876C20AAAB3600088214 /* record_light_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_off@2x.png"; sourceTree = "<group>"; };
-		CAB8876D20AAAB3600088214 /* record_light_auto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_auto@2x.png"; sourceTree = "<group>"; };
-		CAB8876E20AAAB3600088214 /* record_light_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_on@2x.png"; sourceTree = "<group>"; };
-		CAB8876F20AAAB3600088214 /* record_save@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_save@3x.png"; sourceTree = "<group>"; };
-		CAB8877020AAAB3600088214 /* record_cancle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_cancle@3x.png"; sourceTree = "<group>"; };
-		CAB8877120AAAB3600088214 /* record_cancle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_cancle@2x.png"; sourceTree = "<group>"; };
-		CAB8877220AAAB3600088214 /* record_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_save@2x.png"; sourceTree = "<group>"; };
-		CAB8877320AAAB3600088214 /* record_light_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_on@3x.png"; sourceTree = "<group>"; };
-		CAB8877420AAAB3600088214 /* record_preview@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_preview@3x.png"; sourceTree = "<group>"; };
-		CAB8877520AAAB3600088214 /* record_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_start@2x.png"; sourceTree = "<group>"; };
-		CAB8877620AAAB3600088214 /* record_start@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_start@3x.png"; sourceTree = "<group>"; };
-		CAB8877720AAAB3600088214 /* record_preview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_preview@2x.png"; sourceTree = "<group>"; };
-		CAB8877920AAAB3600088214 /* NLVideoRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoRecordManager.m; sourceTree = "<group>"; };
-		CAB8877A20AAAB3600088214 /* NLRecordParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLRecordParam.h; sourceTree = "<group>"; };
-		CAB8877B20AAAB3600088214 /* NLFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLFileManager.h; sourceTree = "<group>"; };
-		CAB8877C20AAAB3600088214 /* NLRecordParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLRecordParam.m; sourceTree = "<group>"; };
-		CAB8877D20AAAB3600088214 /* NLVideoRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoRecordManager.h; sourceTree = "<group>"; };
-		CAB8877E20AAAB3600088214 /* NLFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLFileManager.m; sourceTree = "<group>"; };
-		CAB8878020AAAB3600088214 /* NLVideoPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoPreviewViewController.h; sourceTree = "<group>"; };
-		CAB8878120AAAB3600088214 /* NLVideoRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoRecordViewController.h; sourceTree = "<group>"; };
-		CAB8878220AAAB3600088214 /* NLVideoRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoRecordViewController.m; sourceTree = "<group>"; };
-		CAB8878320AAAB3600088214 /* NLVideoPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoPreviewViewController.m; sourceTree = "<group>"; };
-		CAB8878520AAAB3600088214 /* NLProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLProgressView.h; sourceTree = "<group>"; };
-		CAB8878620AAAB3600088214 /* NLTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTimeView.m; sourceTree = "<group>"; };
-		CAB8878720AAAB3600088214 /* NLBottomOptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBottomOptionsView.m; sourceTree = "<group>"; };
-		CAB8878820AAAB3600088214 /* NLLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLLoadingView.m; sourceTree = "<group>"; };
-		CAB8878920AAAB3600088214 /* NLVideoPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoPreviewView.h; sourceTree = "<group>"; };
-		CAB8878A20AAAB3600088214 /* NLTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTimeView.h; sourceTree = "<group>"; };
-		CAB8878B20AAAB3600088214 /* NLProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLProgressView.m; sourceTree = "<group>"; };
-		CAB8878C20AAAB3600088214 /* NLBottomOptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBottomOptionsView.h; sourceTree = "<group>"; };
-		CAB8878D20AAAB3600088214 /* NLLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLLoadingView.h; sourceTree = "<group>"; };
-		CAB8878E20AAAB3600088214 /* NLVideoPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoPreviewView.m; sourceTree = "<group>"; };
-		CAB8879120AAAB3600088214 /* NLVideoUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoUploadManager.m; sourceTree = "<group>"; };
-		CAB8879220AAAB3600088214 /* AFHTTPSessionManager+ShareSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+ShareSessionManager.m"; sourceTree = "<group>"; };
-		CAB8879320AAAB3600088214 /* AFHTTPSessionManager+ShareSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+ShareSessionManager.h"; sourceTree = "<group>"; };
-		CAB8879420AAAB3600088214 /* NLVideoUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoUploadManager.h; sourceTree = "<group>"; };
-		CAB8879720AAAB3600088214 /* NLWaterMarkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLWaterMarkManager.m; sourceTree = "<group>"; };
-		CAB8879820AAAB3600088214 /* NLWaterMarkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLWaterMarkManager.h; sourceTree = "<group>"; };
-		CAB8879A20AAAB3600088214 /* NLConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLConfigure.h; sourceTree = "<group>"; };
-		CAB8879B20AAAB3600088214 /* NLVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoPlayer.h; sourceTree = "<group>"; };
+		CAB8889120AD80AB00088214 /* NLWaterMarkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLWaterMarkManager.m; sourceTree = "<group>"; };
+		CAB8889220AD80AB00088214 /* NLWaterMarkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLWaterMarkManager.h; sourceTree = "<group>"; };
+		CAB8889520AD80AB00088214 /* record_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_close@3x.png"; sourceTree = "<group>"; };
+		CAB8889620AD80AB00088214 /* time_ sign@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time_ sign@3x.png"; sourceTree = "<group>"; };
+		CAB8889720AD80AB00088214 /* time_sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time_sign@2x.png"; sourceTree = "<group>"; };
+		CAB8889820AD80AB00088214 /* record_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_camera@2x.png"; sourceTree = "<group>"; };
+		CAB8889920AD80AB00088214 /* record_camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_camera@3x.png"; sourceTree = "<group>"; };
+		CAB8889A20AD80AB00088214 /* record_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_close@2x.png"; sourceTree = "<group>"; };
+		CAB8889B20AD80AB00088214 /* record_light_auto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_auto@3x.png"; sourceTree = "<group>"; };
+		CAB8889C20AD80AB00088214 /* record_light_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_off@3x.png"; sourceTree = "<group>"; };
+		CAB8889D20AD80AB00088214 /* record_light_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_off@2x.png"; sourceTree = "<group>"; };
+		CAB8889E20AD80AB00088214 /* record_light_auto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_auto@2x.png"; sourceTree = "<group>"; };
+		CAB8889F20AD80AB00088214 /* record_light_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_on@2x.png"; sourceTree = "<group>"; };
+		CAB888A020AD80AB00088214 /* record_save@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_save@3x.png"; sourceTree = "<group>"; };
+		CAB888A120AD80AB00088214 /* record_cancle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_cancle@3x.png"; sourceTree = "<group>"; };
+		CAB888A220AD80AB00088214 /* record_cancle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_cancle@2x.png"; sourceTree = "<group>"; };
+		CAB888A320AD80AB00088214 /* record_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_save@2x.png"; sourceTree = "<group>"; };
+		CAB888A420AD80AB00088214 /* record_light_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light_on@3x.png"; sourceTree = "<group>"; };
+		CAB888A520AD80AB00088214 /* record_preview@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_preview@3x.png"; sourceTree = "<group>"; };
+		CAB888A620AD80AB00088214 /* record_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_start@2x.png"; sourceTree = "<group>"; };
+		CAB888A720AD80AB00088214 /* record_start@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_start@3x.png"; sourceTree = "<group>"; };
+		CAB888A820AD80AB00088214 /* record_preview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_preview@2x.png"; sourceTree = "<group>"; };
+		CAB888AA20AD80AB00088214 /* NLVideoRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoRecordManager.m; sourceTree = "<group>"; };
+		CAB888AB20AD80AB00088214 /* NLRecordParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLRecordParam.h; sourceTree = "<group>"; };
+		CAB888AC20AD80AB00088214 /* NLFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLFileManager.h; sourceTree = "<group>"; };
+		CAB888AD20AD80AB00088214 /* NLRecordParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLRecordParam.m; sourceTree = "<group>"; };
+		CAB888AE20AD80AB00088214 /* NLVideoRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoRecordManager.h; sourceTree = "<group>"; };
+		CAB888AF20AD80AB00088214 /* NLFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLFileManager.m; sourceTree = "<group>"; };
+		CAB888B120AD80AB00088214 /* NLVideoPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoPreviewViewController.h; sourceTree = "<group>"; };
+		CAB888B220AD80AB00088214 /* NLVideoRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoRecordViewController.h; sourceTree = "<group>"; };
+		CAB888B320AD80AB00088214 /* NLVideoRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoRecordViewController.m; sourceTree = "<group>"; };
+		CAB888B420AD80AB00088214 /* NLVideoPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoPreviewViewController.m; sourceTree = "<group>"; };
+		CAB888B620AD80AB00088214 /* NLProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLProgressView.h; sourceTree = "<group>"; };
+		CAB888B720AD80AB00088214 /* NLTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTimeView.m; sourceTree = "<group>"; };
+		CAB888B820AD80AB00088214 /* NLBottomOptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBottomOptionsView.m; sourceTree = "<group>"; };
+		CAB888B920AD80AB00088214 /* NLLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLLoadingView.m; sourceTree = "<group>"; };
+		CAB888BA20AD80AB00088214 /* NLVideoPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoPreviewView.h; sourceTree = "<group>"; };
+		CAB888BB20AD80AB00088214 /* NLTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTimeView.h; sourceTree = "<group>"; };
+		CAB888BC20AD80AB00088214 /* NLProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLProgressView.m; sourceTree = "<group>"; };
+		CAB888BD20AD80AB00088214 /* NLBottomOptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBottomOptionsView.h; sourceTree = "<group>"; };
+		CAB888BE20AD80AB00088214 /* NLLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLLoadingView.h; sourceTree = "<group>"; };
+		CAB888BF20AD80AB00088214 /* NLVideoPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoPreviewView.m; sourceTree = "<group>"; };
+		CAB888C220AD80AB00088214 /* TBMoviePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMoviePlayer.m; sourceTree = "<group>"; };
+		CAB888C320AD80AB00088214 /* TBMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMoviePlayer.h; sourceTree = "<group>"; };
+		CAB888C620AD80AB00088214 /* NLVideoUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLVideoUploadManager.m; sourceTree = "<group>"; };
+		CAB888C720AD80AB00088214 /* AFHTTPSessionManager+ShareSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+ShareSessionManager.m"; sourceTree = "<group>"; };
+		CAB888C820AD80AB00088214 /* AFHTTPSessionManager+ShareSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+ShareSessionManager.h"; sourceTree = "<group>"; };
+		CAB888C920AD80AB00088214 /* NLVideoUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoUploadManager.h; sourceTree = "<group>"; };
+		CAB888CB20AD80AB00088214 /* NLConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLConfigure.h; sourceTree = "<group>"; };
+		CAB888CC20AD80AB00088214 /* NLVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLVideoPlayer.h; sourceTree = "<group>"; };
 		DA637E8D35030DE7336E3EB8 /* Pods-NLVideoPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLVideoPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NLVideoPlayer/Pods-NLVideoPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		DE5AAC144CE21BB1C03685B1 /* Pods-NLVideoPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NLVideoPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-NLVideoPlayer/Pods-NLVideoPlayer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,152 +244,152 @@
 		CAB8875D20AAAB3600088214 /* Video(视频) */ = {
 			isa = PBXGroup;
 			children = (
-				CAB8879920AAAB3600088214 /* VideoConfigure(配置文件) */,
-				CAB8876220AAAB3600088214 /* VideoRecord(视频录制) */,
-				CAB8878F20AAAB3600088214 /* VideoUpload(视频上传) */,
-				CAB8875E20AAAB3600088214 /* VideoPalyer(视频播放) */,
-				CAB8879520AAAB3600088214 /* VideoEdit(视频编辑) */,
+				CAB888CA20AD80AB00088214 /* VideoConfigure(配置文件) */,
+				CAB8888F20AD80AB00088214 /* VideoEdit(视频编辑) */,
+				CAB888C020AD80AB00088214 /* VideoPalyer(视频播放) */,
+				CAB8889320AD80AB00088214 /* VideoRecord(视频录制) */,
+				CAB888C420AD80AB00088214 /* VideoUpload(视频上传) */,
 			);
 			path = "Video(视频)";
 			sourceTree = "<group>";
 		};
-		CAB8875E20AAAB3600088214 /* VideoPalyer(视频播放) */ = {
+		CAB8888F20AD80AB00088214 /* VideoEdit(视频编辑) */ = {
 			isa = PBXGroup;
 			children = (
-				CAB8875F20AAAB3600088214 /* PlayerManager */,
-			);
-			path = "VideoPalyer(视频播放)";
-			sourceTree = "<group>";
-		};
-		CAB8875F20AAAB3600088214 /* PlayerManager */ = {
-			isa = PBXGroup;
-			children = (
-				CAB8876120AAAB3600088214 /* TBMoviePlayer.h */,
-				CAB8876020AAAB3600088214 /* TBMoviePlayer.m */,
-			);
-			path = PlayerManager;
-			sourceTree = "<group>";
-		};
-		CAB8876220AAAB3600088214 /* VideoRecord(视频录制) */ = {
-			isa = PBXGroup;
-			children = (
-				CAB8876320AAAB3600088214 /* Images */,
-				CAB8877820AAAB3600088214 /* RecordManager */,
-				CAB8877F20AAAB3600088214 /* Controller */,
-				CAB8878420AAAB3600088214 /* View */,
-			);
-			path = "VideoRecord(视频录制)";
-			sourceTree = "<group>";
-		};
-		CAB8876320AAAB3600088214 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				CAB8876720AAAB3600088214 /* record_camera@2x.png */,
-				CAB8876820AAAB3600088214 /* record_camera@3x.png */,
-				CAB8877120AAAB3600088214 /* record_cancle@2x.png */,
-				CAB8877020AAAB3600088214 /* record_cancle@3x.png */,
-				CAB8876920AAAB3600088214 /* record_close@2x.png */,
-				CAB8876420AAAB3600088214 /* record_close@3x.png */,
-				CAB8876D20AAAB3600088214 /* record_light_auto@2x.png */,
-				CAB8876A20AAAB3600088214 /* record_light_auto@3x.png */,
-				CAB8876C20AAAB3600088214 /* record_light_off@2x.png */,
-				CAB8876B20AAAB3600088214 /* record_light_off@3x.png */,
-				CAB8876E20AAAB3600088214 /* record_light_on@2x.png */,
-				CAB8877320AAAB3600088214 /* record_light_on@3x.png */,
-				CAB8877720AAAB3600088214 /* record_preview@2x.png */,
-				CAB8877420AAAB3600088214 /* record_preview@3x.png */,
-				CAB8877220AAAB3600088214 /* record_save@2x.png */,
-				CAB8876F20AAAB3600088214 /* record_save@3x.png */,
-				CAB8877520AAAB3600088214 /* record_start@2x.png */,
-				CAB8877620AAAB3600088214 /* record_start@3x.png */,
-				CAB8876520AAAB3600088214 /* time_ sign@3x.png */,
-				CAB8876620AAAB3600088214 /* time_sign@2x.png */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
-		CAB8877820AAAB3600088214 /* RecordManager */ = {
-			isa = PBXGroup;
-			children = (
-				CAB8877B20AAAB3600088214 /* NLFileManager.h */,
-				CAB8877E20AAAB3600088214 /* NLFileManager.m */,
-				CAB8877A20AAAB3600088214 /* NLRecordParam.h */,
-				CAB8877C20AAAB3600088214 /* NLRecordParam.m */,
-				CAB8877D20AAAB3600088214 /* NLVideoRecordManager.h */,
-				CAB8877920AAAB3600088214 /* NLVideoRecordManager.m */,
-			);
-			path = RecordManager;
-			sourceTree = "<group>";
-		};
-		CAB8877F20AAAB3600088214 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				CAB8878020AAAB3600088214 /* NLVideoPreviewViewController.h */,
-				CAB8878320AAAB3600088214 /* NLVideoPreviewViewController.m */,
-				CAB8878120AAAB3600088214 /* NLVideoRecordViewController.h */,
-				CAB8878220AAAB3600088214 /* NLVideoRecordViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		CAB8878420AAAB3600088214 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CAB8878C20AAAB3600088214 /* NLBottomOptionsView.h */,
-				CAB8878720AAAB3600088214 /* NLBottomOptionsView.m */,
-				CAB8878D20AAAB3600088214 /* NLLoadingView.h */,
-				CAB8878820AAAB3600088214 /* NLLoadingView.m */,
-				CAB8878520AAAB3600088214 /* NLProgressView.h */,
-				CAB8878B20AAAB3600088214 /* NLProgressView.m */,
-				CAB8878A20AAAB3600088214 /* NLTimeView.h */,
-				CAB8878620AAAB3600088214 /* NLTimeView.m */,
-				CAB8878920AAAB3600088214 /* NLVideoPreviewView.h */,
-				CAB8878E20AAAB3600088214 /* NLVideoPreviewView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		CAB8878F20AAAB3600088214 /* VideoUpload(视频上传) */ = {
-			isa = PBXGroup;
-			children = (
-				CAB8879020AAAB3600088214 /* UploadManager */,
-			);
-			path = "VideoUpload(视频上传)";
-			sourceTree = "<group>";
-		};
-		CAB8879020AAAB3600088214 /* UploadManager */ = {
-			isa = PBXGroup;
-			children = (
-				CAB8879320AAAB3600088214 /* AFHTTPSessionManager+ShareSessionManager.h */,
-				CAB8879220AAAB3600088214 /* AFHTTPSessionManager+ShareSessionManager.m */,
-				CAB8879420AAAB3600088214 /* NLVideoUploadManager.h */,
-				CAB8879120AAAB3600088214 /* NLVideoUploadManager.m */,
-			);
-			path = UploadManager;
-			sourceTree = "<group>";
-		};
-		CAB8879520AAAB3600088214 /* VideoEdit(视频编辑) */ = {
-			isa = PBXGroup;
-			children = (
-				CAB8879620AAAB3600088214 /* WaterMarkManager */,
+				CAB8889020AD80AB00088214 /* WaterMarkManager */,
 			);
 			path = "VideoEdit(视频编辑)";
 			sourceTree = "<group>";
 		};
-		CAB8879620AAAB3600088214 /* WaterMarkManager */ = {
+		CAB8889020AD80AB00088214 /* WaterMarkManager */ = {
 			isa = PBXGroup;
 			children = (
-				CAB8879820AAAB3600088214 /* NLWaterMarkManager.h */,
-				CAB8879720AAAB3600088214 /* NLWaterMarkManager.m */,
+				CAB8889120AD80AB00088214 /* NLWaterMarkManager.m */,
+				CAB8889220AD80AB00088214 /* NLWaterMarkManager.h */,
 			);
 			path = WaterMarkManager;
 			sourceTree = "<group>";
 		};
-		CAB8879920AAAB3600088214 /* VideoConfigure(配置文件) */ = {
+		CAB8889320AD80AB00088214 /* VideoRecord(视频录制) */ = {
 			isa = PBXGroup;
 			children = (
-				CAB8879A20AAAB3600088214 /* NLConfigure.h */,
-				CAB8879B20AAAB3600088214 /* NLVideoPlayer.h */,
+				CAB8889420AD80AB00088214 /* Images */,
+				CAB888A920AD80AB00088214 /* RecordManager */,
+				CAB888B020AD80AB00088214 /* Controller */,
+				CAB888B520AD80AB00088214 /* View */,
+			);
+			path = "VideoRecord(视频录制)";
+			sourceTree = "<group>";
+		};
+		CAB8889420AD80AB00088214 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CAB8889520AD80AB00088214 /* record_close@3x.png */,
+				CAB8889620AD80AB00088214 /* time_ sign@3x.png */,
+				CAB8889720AD80AB00088214 /* time_sign@2x.png */,
+				CAB8889820AD80AB00088214 /* record_camera@2x.png */,
+				CAB8889920AD80AB00088214 /* record_camera@3x.png */,
+				CAB8889A20AD80AB00088214 /* record_close@2x.png */,
+				CAB8889B20AD80AB00088214 /* record_light_auto@3x.png */,
+				CAB8889C20AD80AB00088214 /* record_light_off@3x.png */,
+				CAB8889D20AD80AB00088214 /* record_light_off@2x.png */,
+				CAB8889E20AD80AB00088214 /* record_light_auto@2x.png */,
+				CAB8889F20AD80AB00088214 /* record_light_on@2x.png */,
+				CAB888A020AD80AB00088214 /* record_save@3x.png */,
+				CAB888A120AD80AB00088214 /* record_cancle@3x.png */,
+				CAB888A220AD80AB00088214 /* record_cancle@2x.png */,
+				CAB888A320AD80AB00088214 /* record_save@2x.png */,
+				CAB888A420AD80AB00088214 /* record_light_on@3x.png */,
+				CAB888A520AD80AB00088214 /* record_preview@3x.png */,
+				CAB888A620AD80AB00088214 /* record_start@2x.png */,
+				CAB888A720AD80AB00088214 /* record_start@3x.png */,
+				CAB888A820AD80AB00088214 /* record_preview@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		CAB888A920AD80AB00088214 /* RecordManager */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888AC20AD80AB00088214 /* NLFileManager.h */,
+				CAB888AF20AD80AB00088214 /* NLFileManager.m */,
+				CAB888AB20AD80AB00088214 /* NLRecordParam.h */,
+				CAB888AD20AD80AB00088214 /* NLRecordParam.m */,
+				CAB888AE20AD80AB00088214 /* NLVideoRecordManager.h */,
+				CAB888AA20AD80AB00088214 /* NLVideoRecordManager.m */,
+			);
+			path = RecordManager;
+			sourceTree = "<group>";
+		};
+		CAB888B020AD80AB00088214 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888B120AD80AB00088214 /* NLVideoPreviewViewController.h */,
+				CAB888B220AD80AB00088214 /* NLVideoRecordViewController.h */,
+				CAB888B320AD80AB00088214 /* NLVideoRecordViewController.m */,
+				CAB888B420AD80AB00088214 /* NLVideoPreviewViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CAB888B520AD80AB00088214 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888B620AD80AB00088214 /* NLProgressView.h */,
+				CAB888B720AD80AB00088214 /* NLTimeView.m */,
+				CAB888B820AD80AB00088214 /* NLBottomOptionsView.m */,
+				CAB888B920AD80AB00088214 /* NLLoadingView.m */,
+				CAB888BA20AD80AB00088214 /* NLVideoPreviewView.h */,
+				CAB888BB20AD80AB00088214 /* NLTimeView.h */,
+				CAB888BC20AD80AB00088214 /* NLProgressView.m */,
+				CAB888BD20AD80AB00088214 /* NLBottomOptionsView.h */,
+				CAB888BE20AD80AB00088214 /* NLLoadingView.h */,
+				CAB888BF20AD80AB00088214 /* NLVideoPreviewView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAB888C020AD80AB00088214 /* VideoPalyer(视频播放) */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888C120AD80AB00088214 /* PlayerManager */,
+			);
+			path = "VideoPalyer(视频播放)";
+			sourceTree = "<group>";
+		};
+		CAB888C120AD80AB00088214 /* PlayerManager */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888C220AD80AB00088214 /* TBMoviePlayer.m */,
+				CAB888C320AD80AB00088214 /* TBMoviePlayer.h */,
+			);
+			path = PlayerManager;
+			sourceTree = "<group>";
+		};
+		CAB888C420AD80AB00088214 /* VideoUpload(视频上传) */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888C520AD80AB00088214 /* UploadManager */,
+			);
+			path = "VideoUpload(视频上传)";
+			sourceTree = "<group>";
+		};
+		CAB888C520AD80AB00088214 /* UploadManager */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888C820AD80AB00088214 /* AFHTTPSessionManager+ShareSessionManager.h */,
+				CAB888C720AD80AB00088214 /* AFHTTPSessionManager+ShareSessionManager.m */,
+				CAB888C920AD80AB00088214 /* NLVideoUploadManager.h */,
+				CAB888C620AD80AB00088214 /* NLVideoUploadManager.m */,
+			);
+			path = UploadManager;
+			sourceTree = "<group>";
+		};
+		CAB888CA20AD80AB00088214 /* VideoConfigure(配置文件) */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888CB20AD80AB00088214 /* NLConfigure.h */,
+				CAB888CC20AD80AB00088214 /* NLVideoPlayer.h */,
 			);
 			path = "VideoConfigure(配置文件)";
 			sourceTree = "<group>";
@@ -499,27 +499,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAB8879F20AAAB3700088214 /* time_sign@2x.png in Resources */,
-				CAB887AA20AAAB3700088214 /* record_cancle@2x.png in Resources */,
-				CAB887AC20AAAB3700088214 /* record_light_on@3x.png in Resources */,
-				CAB887AF20AAAB3700088214 /* record_start@3x.png in Resources */,
-				CAB887A120AAAB3700088214 /* record_camera@3x.png in Resources */,
+				CAB888D020AD80AB00088214 /* time_sign@2x.png in Resources */,
+				CAB888DB20AD80AB00088214 /* record_cancle@2x.png in Resources */,
+				CAB888DD20AD80AB00088214 /* record_light_on@3x.png in Resources */,
+				CAB888E020AD80AB00088214 /* record_start@3x.png in Resources */,
+				CAB888D220AD80AB00088214 /* record_camera@3x.png in Resources */,
 				CA63E841209C04E300090A20 /* LaunchScreen.storyboard in Resources */,
-				CAB887A220AAAB3700088214 /* record_close@2x.png in Resources */,
-				CAB887A820AAAB3700088214 /* record_save@3x.png in Resources */,
-				CAB887A520AAAB3700088214 /* record_light_off@2x.png in Resources */,
-				CAB887B020AAAB3700088214 /* record_preview@2x.png in Resources */,
-				CAB887A920AAAB3700088214 /* record_cancle@3x.png in Resources */,
-				CAB887AE20AAAB3700088214 /* record_start@2x.png in Resources */,
-				CAB887A620AAAB3700088214 /* record_light_auto@2x.png in Resources */,
-				CAB8879D20AAAB3700088214 /* record_close@3x.png in Resources */,
-				CAB887A420AAAB3700088214 /* record_light_off@3x.png in Resources */,
-				CAB8879E20AAAB3700088214 /* time_ sign@3x.png in Resources */,
-				CAB887AB20AAAB3700088214 /* record_save@2x.png in Resources */,
-				CAB887A320AAAB3700088214 /* record_light_auto@3x.png in Resources */,
-				CAB887AD20AAAB3700088214 /* record_preview@3x.png in Resources */,
-				CAB887A020AAAB3700088214 /* record_camera@2x.png in Resources */,
-				CAB887A720AAAB3700088214 /* record_light_on@2x.png in Resources */,
+				CAB888D320AD80AB00088214 /* record_close@2x.png in Resources */,
+				CAB888D920AD80AB00088214 /* record_save@3x.png in Resources */,
+				CAB888D620AD80AB00088214 /* record_light_off@2x.png in Resources */,
+				CAB888E120AD80AB00088214 /* record_preview@2x.png in Resources */,
+				CAB888DA20AD80AB00088214 /* record_cancle@3x.png in Resources */,
+				CAB888DF20AD80AB00088214 /* record_start@2x.png in Resources */,
+				CAB888D720AD80AB00088214 /* record_light_auto@2x.png in Resources */,
+				CAB888CE20AD80AB00088214 /* record_close@3x.png in Resources */,
+				CAB888D520AD80AB00088214 /* record_light_off@3x.png in Resources */,
+				CAB888CF20AD80AB00088214 /* time_ sign@3x.png in Resources */,
+				CAB888DC20AD80AB00088214 /* record_save@2x.png in Resources */,
+				CAB888D420AD80AB00088214 /* record_light_auto@3x.png in Resources */,
+				CAB888DE20AD80AB00088214 /* record_preview@3x.png in Resources */,
+				CAB888D120AD80AB00088214 /* record_camera@2x.png in Resources */,
+				CAB888D820AD80AB00088214 /* record_light_on@2x.png in Resources */,
 				CA63E83E209C04E300090A20 /* Assets.xcassets in Resources */,
 				CA63E83C209C04E100090A20 /* Main.storyboard in Resources */,
 			);
@@ -586,22 +586,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA63E839209C04E100090A20 /* ViewController.m in Sources */,
-				CAB887BA20AAAB3700088214 /* NLVideoPreviewView.m in Sources */,
-				CAB887B820AAAB3700088214 /* NLLoadingView.m in Sources */,
-				CAB887B120AAAB3700088214 /* NLVideoRecordManager.m in Sources */,
-				CAB887B220AAAB3700088214 /* NLRecordParam.m in Sources */,
-				CAB887B620AAAB3700088214 /* NLTimeView.m in Sources */,
-				CAB8879C20AAAB3700088214 /* TBMoviePlayer.m in Sources */,
-				CAB887BB20AAAB3700088214 /* NLVideoUploadManager.m in Sources */,
-				CAB887BC20AAAB3700088214 /* AFHTTPSessionManager+ShareSessionManager.m in Sources */,
-				CAB887B520AAAB3700088214 /* NLVideoPreviewViewController.m in Sources */,
-				CAB887B720AAAB3700088214 /* NLBottomOptionsView.m in Sources */,
-				CAB887B920AAAB3700088214 /* NLProgressView.m in Sources */,
+				CAB888EB20AD80AB00088214 /* NLVideoPreviewView.m in Sources */,
+				CAB888ED20AD80AB00088214 /* NLVideoUploadManager.m in Sources */,
+				CAB888E920AD80AB00088214 /* NLLoadingView.m in Sources */,
+				CAB888E220AD80AB00088214 /* NLVideoRecordManager.m in Sources */,
+				CAB888E320AD80AB00088214 /* NLRecordParam.m in Sources */,
+				CAB888E720AD80AB00088214 /* NLTimeView.m in Sources */,
 				CA63E844209C04E300090A20 /* main.m in Sources */,
-				CAB887B320AAAB3700088214 /* NLFileManager.m in Sources */,
+				CAB888EC20AD80AB00088214 /* TBMoviePlayer.m in Sources */,
+				CAB888E620AD80AB00088214 /* NLVideoPreviewViewController.m in Sources */,
+				CAB888E820AD80AB00088214 /* NLBottomOptionsView.m in Sources */,
+				CAB888EA20AD80AB00088214 /* NLProgressView.m in Sources */,
+				CAB888CD20AD80AB00088214 /* NLWaterMarkManager.m in Sources */,
+				CAB888E420AD80AB00088214 /* NLFileManager.m in Sources */,
+				CAB888EE20AD80AB00088214 /* AFHTTPSessionManager+ShareSessionManager.m in Sources */,
 				CA63E836209C04E100090A20 /* AppDelegate.m in Sources */,
-				CAB887BD20AAAB3700088214 /* NLWaterMarkManager.m in Sources */,
-				CAB887B420AAAB3700088214 /* NLVideoRecordViewController.m in Sources */,
+				CAB888E520AD80AB00088214 /* NLVideoRecordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
