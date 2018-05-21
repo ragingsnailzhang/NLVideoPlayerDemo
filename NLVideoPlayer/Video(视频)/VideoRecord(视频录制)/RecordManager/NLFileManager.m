@@ -43,7 +43,6 @@
     }
 }
 
-#pragma mark - 遍历文件夹
 + (NSArray *)listFilesInDirectoryAtPath:(NSString *)path deep:(BOOL)deep {
     NSArray *listArr;
     NSError *error;

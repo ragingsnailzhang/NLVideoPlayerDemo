@@ -27,5 +27,7 @@
 +(NSString *)getVideoCoverWithImage:(UIImage *)image AndName:(NSString *)imgName;
 //获取视频时长
 +(NSUInteger)durationWithVideo:(NSURL *)videoUrl;
+//获得此目录下文件
++(NSArray *)listFilesInDirectoryAtPath:(NSString *)path deep:(BOOL)deep;
 
 @end

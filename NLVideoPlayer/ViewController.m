@@ -116,6 +116,7 @@
         NSLog(@"%@",error);
     }];
 }
+
 //MARK:播放视频
 -(void)playVideo{
     if (!self.outputURL) {
