@@ -26,7 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
+    
     self.item = [AVPlayerItem playerItemWithURL:self.fileURL];
     self.player = [AVPlayer playerWithPlayerItem:self.item];
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
@@ -47,6 +48,7 @@
 
 -(void)runloopTheMovie:(NSNotification *)notify{
     AVPlayerItem *item = notify.object;
+//    CMTimeMake(0.1, 1)
     [item seekToTime:kCMTimeZero];
     [self.player play];
 }

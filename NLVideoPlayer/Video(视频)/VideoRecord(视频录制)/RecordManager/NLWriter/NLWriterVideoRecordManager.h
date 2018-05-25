@@ -1,26 +1,18 @@
 //
-//  NLVideoRecordManager.h
+//  NLWriterVideoRecordManager.h
 //  NLVideoPlayer
 //
-//  Created by yj_zhang on 2018/5/4.
+//  Created by yj_zhang on 2018/5/22.
 //  Copyright © 2018年 yj_zhang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import <Photos/Photos.h>
-#import "NLVideoPlayer.h"
+#import "NLWriterVideoRecordViewController.h"
 
-typedef NS_ENUM(NSInteger,CompressionQuality) {
-    lowQuality = 1,
-    mediumQuality,
-    highestQuality,
-};
-
-
-@protocol NLVideoRecordManagerVCDelegate <NSObject>
+@protocol NLWriterVideoRecordManagerVCDelegate <NSObject>
 //录制完成
--(void)recordFinishedWithOutputFilePath:(NSURL *)filePath RecordTime:(CGFloat)recordTime;
+-(void)recordFinishedWithOutputFileURL:(NSURL *)fileURL RecordTime:(CGFloat)recordTime;
 //录制时间
 -(void)reloadRecordTime:(CGFloat)time;
 //隐藏闪光灯
@@ -28,7 +20,7 @@ typedef NS_ENUM(NSInteger,CompressionQuality) {
 
 @end
 
-@protocol NLVideoRecordManagerDelegate <NSObject>
+@protocol NLWriterVideoRecordManagerDelegate <NSObject>
 
 @optional
 //获取视频数据流
@@ -42,18 +34,17 @@ typedef NS_ENUM(NSInteger,CompressionQuality) {
 
 @end
 
-@interface NLVideoRecordManager : NSObject
+@interface NLWriterVideoRecordManager : NSObject
 
 @property(nonatomic,strong)AVCaptureSession *session;
 
-@property(nonatomic,weak)id <NLVideoRecordManagerVCDelegate>vcDelegate;
+@property(nonatomic,weak)id <NLWriterVideoRecordManagerVCDelegate>vcDelegate;
 
-@property(nonatomic,weak)id <NLVideoRecordManagerDelegate>delegate;
+@property(nonatomic,weak)id <NLWriterVideoRecordManagerDelegate>delegate;
 
-+(NLVideoRecordManager *)shareVideoRecordManager;
++(NLWriterVideoRecordManager *)shareVideoRecordManager;
 
 +(UIViewController *)createRecordViewControllerWithRecordParam:(NLRecordParam *)param;
-
 //配置参数
 -(void)configVideoParamsWithRecordParam:(NLRecordParam *)param;
 //开始画面采集
@@ -64,14 +55,14 @@ typedef NS_ENUM(NSInteger,CompressionQuality) {
 -(void)startRecord;
 //结束录制
 -(void)stopRecord;
-//切换摄像头
--(void)turnCamera;
-//闪光灯
--(void)changeLightWithState:(AVCaptureTorchMode)state;
 //清除输入源与输出源
 -(void)removeOutputAndInput;
 //保存视频
 -(void)saveVideo;
+//切换摄像头
+-(void)turnCamera;
+//闪光灯
+-(void)changeLightWithState:(AVCaptureTorchMode)state;
 //视频压缩
 -(void)videoCompressionURL:(NSURL *)videoURL CompletionHandler:(void (^)(NSURL *))handler;
 

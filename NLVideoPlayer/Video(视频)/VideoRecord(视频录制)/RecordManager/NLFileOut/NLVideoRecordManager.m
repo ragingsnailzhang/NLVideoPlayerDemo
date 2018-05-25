@@ -8,17 +8,19 @@
 
 #import "NLVideoRecordManager.h"
 
-@interface NLVideoRecordManager()<AVCaptureFileOutputRecordingDelegate>
+@interface NLVideoRecordManager()<AVCaptureFileOutputRecordingDelegate,AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @property(nonatomic,strong)AVCaptureConnection *captureConnection;
 @property(nonatomic,strong)AVCaptureDeviceInput *videoInput;         //视频输入
 @property(nonatomic,strong)AVCaptureDeviceInput *audioInput;         //音频输入
 @property(nonatomic,strong)AVCaptureMovieFileOutput *fileOutput;     //文件输出
+
 @property(nonatomic,strong)NSTimer *timer;                           //计时器
 @property(nonatomic,assign)CGFloat time;                             //时间
 @property(nonatomic,strong)UIView *inView;                           //当前界面
 @property(nonatomic,strong)NLRecordParam *recordParam;
 @property(nonatomic,strong)NSURL *outputPath;
+
 
 @end
 
@@ -98,7 +100,7 @@ static NLVideoRecordManager *manager = nil;
 //设置输出源
 -(void)setupVideoOutputWithMaxTime:(CGFloat)maxTime minTime:(CGFloat)minTime{
     self.fileOutput = [[AVCaptureMovieFileOutput alloc]init];
-    self.fileOutput.maxRecordedDuration = CMTimeMake(maxTime, 1);
+    self.fileOutput.maxRecordedDuration = CMTimeMake(maxTime, minTime);
     self.captureConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
     if ([self.captureConnection isVideoStabilizationSupported]) {//判断是否支持防抖
         self.captureConnection.preferredVideoStabilizationMode = AVCaptureVideoStabilizationModeAuto;
@@ -367,5 +369,8 @@ static NLVideoRecordManager *manager = nil;
     }
     return nil;
 }
+
+
+
 
 @end

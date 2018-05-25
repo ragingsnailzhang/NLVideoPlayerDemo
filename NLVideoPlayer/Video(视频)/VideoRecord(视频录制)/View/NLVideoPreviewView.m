@@ -9,6 +9,7 @@
 #import "NLVideoPreviewView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "NLVideoPlayer.h"
+#import "NLWriterVideoRecordManager.h"
 @interface NLVideoPreviewView()
 
 @property(nonatomic,strong)AVCaptureVideoPreviewLayer *previewLayer;
@@ -17,10 +18,10 @@
 
 @implementation NLVideoPreviewView
 
--(instancetype)initWithFrame:(CGRect)frame {
+-(instancetype)initWithFrame:(CGRect)frame Session:(AVCaptureSession *)session{
     
     if (self = [super initWithFrame:frame]){
-        self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:[NLVideoRecordManager shareVideoRecordManager].session];
+        self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
         self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
         self.previewLayer.frame = frame;
         [self.layer insertSublayer:self.previewLayer above:0];

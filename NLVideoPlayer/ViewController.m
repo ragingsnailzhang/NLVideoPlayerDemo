@@ -8,7 +8,9 @@
 
 #import "ViewController.h"
 #import "NLVideoPlayer.h"
-@interface ViewController ()<NLVideoRecordManagerDelegate>
+#import "NLWriterVideoRecordManager.h"
+
+@interface ViewController ()<NLVideoRecordManagerDelegate,NLWriterVideoRecordManagerDelegate>
 
 @property(nonatomic,strong)UIImageView *imgView;
 @property(nonatomic,strong)NSData *fileData;
@@ -62,9 +64,9 @@
 }
 -(void)recordClick{
     self.uploadBtn.enabled = YES;
-    NLRecordParam *param = [NLRecordParam recordConfigWithVideoRatio:NLVideoVideoRatioFullScreen Position:AVCaptureDevicePositionBack maxRecordTime:10.f minRecordTime:1.f Compression:YES WaterMark:nil CurrentVC:self];
-    UIViewController *recordVC = [NLVideoRecordManager createRecordViewControllerWithRecordParam:param];
-    [NLVideoRecordManager shareVideoRecordManager].delegate = self;
+    NLRecordParam *param = [NLRecordParam recordConfigWithVideoRatio:NLVideoVideoRatioFullScreen Position:AVCaptureDevicePositionBack maxRecordTime:10.f minRecordTime:1.f Compression:YES WaterMark:@"wz_yinglong" CurrentVC:self];
+    UIViewController *recordVC = [NLWriterVideoRecordManager createRecordViewControllerWithRecordParam:param];
+    [NLWriterVideoRecordManager shareVideoRecordManager].delegate = self;
     [self presentViewController:recordVC animated:YES completion:nil];
 }
 
@@ -90,6 +92,7 @@
         self->_imgView.image = coverImage;
     });
 }
+
 //MARK:上传视频
 -(void)uploadVideo{
     if (!self.fileData) {

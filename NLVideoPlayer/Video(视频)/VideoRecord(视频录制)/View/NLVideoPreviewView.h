@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <AVFoundation/AVFoundation.h>
 @interface NLVideoPreviewView : UIView
+
+-(instancetype)initWithFrame:(CGRect)frame Session:(AVCaptureSession *)session;
 
 @end

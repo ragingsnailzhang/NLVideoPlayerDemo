@@ -25,87 +25,87 @@ static NLWaterMarkManager *manager = nil;
     }
     
     NSDictionary *opts = [NSDictionary dictionaryWithObject:@(YES) forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-    //初始化视频文件
+    
+    //视频采集
     AVURLAsset *videoAsset = [AVURLAsset URLAssetWithURL:filePath options:opts];
     
-    CMTime startTime = CMTimeMakeWithSeconds(0.2f, 600);
-    CMTime endTime = CMTimeMakeWithSeconds(videoAsset.duration.value/videoAsset.duration.timescale-0.2,videoAsset.duration.timescale);
-    
     //声音采集
-    AVURLAsset *audioAsset = [[AVURLAsset alloc]initWithURL:filePath options:opts];
+    AVURLAsset * audioAsset = [[AVURLAsset alloc] initWithURL:filePath options:opts];
     
-    AVMutableComposition *mixComposition = [[AVMutableComposition alloc]init];
-    //视频通道
+    AVMutableComposition *mixComposition = [[AVMutableComposition alloc] init];
+    
+    //视频通道  工程文件中的轨道，有音频轨、视频轨等，里面可以插入各种对应的素材
     AVMutableCompositionTrack *videoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-    [videoTrack insertTimeRange:CMTimeRangeFromTimeToTime(startTime, endTime) ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeVideo].firstObject atTime:kCMTimeZero error:nil];
     
     //音频通道
-    AVMutableCompositionTrack *audioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    [audioTrack insertTimeRange:CMTimeRangeFromTimeToTime(startTime, endTime) ofTrack:[audioAsset tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
+    AVMutableCompositionTrack * audioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
     
+    CMTime startTime = kCMTimeZero;
+    CMTime endTime = CMTimeMakeWithSeconds(videoAsset.duration.value/videoAsset.duration.timescale-0.4, videoAsset.duration.timescale);
+    //把视频轨道数据加入到可变轨道中 这部分可以做视频裁剪TimeRange
+    AVAssetTrack *videoAssetTrack = [videoAsset tracksWithMediaType:AVMediaTypeVideo].firstObject;
+    [videoTrack insertTimeRange:CMTimeRangeMake(startTime, endTime) ofTrack:videoAssetTrack atTime:kCMTimeZero error:nil];
+    
+    //音频采集通道
+    AVAssetTrack * audioAssetTrack = [[audioAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
+    [audioTrack insertTimeRange:CMTimeRangeMake(startTime, endTime) ofTrack:audioAssetTrack atTime:kCMTimeZero error:nil];
+    
+    //AVMutableVideoCompositionInstruction 视频轨道中的一个视频，可以缩放、旋转等
     AVMutableVideoCompositionInstruction *mainInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
-    mainInstruction.timeRange = CMTimeRangeFromTimeToTime(kCMTimeZero, videoTrack.timeRange.duration);
+    mainInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, videoTrack.timeRange.duration);
     
-    AVMutableVideoCompositionLayerInstruction *videoLayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
-    
-    BOOL isVideoPortrait = NO;
-    CGAffineTransform videoTransform = [videoAsset tracksWithMediaType:AVMediaTypeVideo].firstObject.preferredTransform;
-    if (videoTransform.a == 0 && videoTransform.b == 1 && videoTransform.c == -1 && videoTransform.d == 0) {
-        isVideoPortrait = YES;
+    //AVMutableVideoCompositionLayerInstruction 一个视频轨道，包含了这个轨道上的所有视频素材
+    AVMutableVideoCompositionLayerInstruction *videolayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
+    BOOL isVideoAssetPortrait_  = NO;
+    CGAffineTransform videoTransform = videoAssetTrack.preferredTransform;
+    if (videoTransform.a == 0 && videoTransform.b == 1.0 && videoTransform.c == -1.0 && videoTransform.d == 0) {
+        isVideoAssetPortrait_ = YES;
     }
-    if (videoTransform.a == 0 && videoTransform.b == -1 && videoTransform.c == 1 && videoTransform.d == 0) {
-        isVideoPortrait = YES;
+    if (videoTransform.a == 0 && videoTransform.b == -1.0 && videoTransform.c == 1.0 && videoTransform.d == 0) {
+        isVideoAssetPortrait_ = YES;
     }
-    [videoLayerInstruction setTransform:videoTransform atTime:kCMTimeZero];
-    [videoLayerInstruction setOpacity:0.f atTime:endTime];
-    
-    mainInstruction.layerInstructions = @[videoLayerInstruction];
-    
-    AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
-    
-    CGSize naturalSize;
-    if (isVideoPortrait) {
-        naturalSize = CGSizeMake(videoTrack.naturalSize.height, videoTrack.naturalSize.width);
-    }else{
-        naturalSize = videoTrack.naturalSize;
+    [videolayerInstruction setTransform:videoAssetTrack.preferredTransform atTime:kCMTimeZero];
+    [videolayerInstruction setOpacity:0.0 atTime:endTime];
+    //Add instructions
+    mainInstruction.layerInstructions = [NSArray arrayWithObjects:videolayerInstruction,nil];
+    //AVMutableVideoComposition：管理所有视频轨道，可以决定最终视频的尺寸，裁剪需要在这里进行
+    AVMutableVideoComposition *mainCompositionInst = [AVMutableVideoComposition videoComposition];
+    CGSize naturalSize = videoAssetTrack.naturalSize;
+    if(isVideoAssetPortrait_){
+        naturalSize = CGSizeMake(videoAssetTrack.naturalSize.height, videoAssetTrack.naturalSize.width);
     }
+    mainCompositionInst.renderSize = naturalSize;
+    mainCompositionInst.instructions = [NSArray arrayWithObject:mainInstruction];
+    mainCompositionInst.frameDuration = CMTimeMake(1, 25);
     
-    float renderWidth, renderHeight;
-    renderWidth = naturalSize.width;
-    renderHeight = naturalSize.height;
-    videoComposition.renderSize = CGSizeMake(renderWidth, renderHeight);
-    videoComposition.renderSize = CGSizeMake(renderWidth, renderHeight);
-    videoComposition.instructions = [NSArray arrayWithObject:mainInstruction];
-    videoComposition.frameDuration = CMTimeMake(1, 25);
-    
-    [self applyVideoEffectsToComposition:videoComposition WaterMark:waterMarkStr size:CGSizeMake(renderWidth, renderHeight)];
+    [self applyVideoEffectsToComposition:mainCompositionInst WaterMark:waterMarkStr size:naturalSize];
     
     // 5 - 视频文件输出
     AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:presetName];
+
     NSString *exportFileName = [filePath.absoluteString componentsSeparatedByString:@"/"].lastObject;
     NSString *folderPath = [NLFileManager folderPathWithName:VIDEO_FOLDER Path:[NLFileManager documentPath]];
     NSURL *fileURL = [NSURL fileURLWithPath:[folderPath stringByAppendingPathComponent:[NSString stringWithFormat:@"edit_%@",exportFileName]]];
     exporter.outputURL = fileURL;
     exporter.outputFileType = AVFileTypeMPEG4;
     exporter.shouldOptimizeForNetworkUse = YES;
-    exporter.videoComposition = videoComposition;
+    exporter.videoComposition = mainCompositionInst;
     return exporter;
 
 }
 
 -(void)applyVideoEffectsToComposition:(AVMutableVideoComposition *)composition WaterMark:(NSString*)waterMark size:(CGSize)size {
-    UIFont *font = [UIFont systemFontOfSize:60.0];
+    
+    CGFloat rate = (CGFloat)size.height/kScreenH;
+    CGFloat fontSize = 20.0*rate;
     CATextLayer *subtitleText = [[CATextLayer alloc] init];
-    [subtitleText setFontSize:60];
+    UIFont *font = [UIFont systemFontOfSize:fontSize];
+    [subtitleText setFontSize:fontSize];
     [subtitleText setString:waterMark];
-    [subtitleText setAlignmentMode:kCAAlignmentCenter];
+    [subtitleText setAlignmentMode:kCAAlignmentLeft];
     [subtitleText setForegroundColor:[[UIColor whiteColor] CGColor]];
-    subtitleText.masksToBounds = YES;
-    subtitleText.cornerRadius = 10.0f;
-//    [subtitleText setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5].CGColor];
     CGSize textSize = [waterMark sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
-    [subtitleText setFrame:CGRectMake(50, 100, textSize.width+20, textSize.height+10)];
-
+    [subtitleText setFrame:CGRectMake(20*rate, 20*rate, textSize.width+rate*5, textSize.height)];
     CALayer *overlayLayer = [CALayer layer];
     overlayLayer.frame = CGRectMake(0, 0, size.width, size.height);
     [overlayLayer addSublayer:subtitleText];

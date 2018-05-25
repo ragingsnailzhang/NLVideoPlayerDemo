@@ -8,27 +8,47 @@
 
 #import "NLVideoRecordViewController.h"
 #import <objc/runtime.h>
+#import "AppDelegate.h"
+#import "NLSettingView.h"
+#import "NLTopOptionsView.h"
 
 @interface NLVideoRecordViewController ()<NLVideoRecordManagerVCDelegate,NLBottomOptionsViewDelegate>
 
-@property(nonatomic,strong)UIButton *closeBtn;                       //关闭按钮
-@property(nonatomic,strong)UIButton *cameraBtn;                      //摄像头按钮
-@property(nonatomic,strong)UIButton *lightBtn;                       //闪光灯按钮
+@property(nonatomic,strong)NLTopOptionsView *topView;                //顶部View
 @property(nonatomic,strong)NLVideoPreviewView *previewView;          //预览View
 @property(nonatomic,strong)NLTimeView *timeView;                     //倒计时View
 @property(nonatomic,strong)NLProgressView *progressView;             //进度
 @property(nonatomic,strong)NLBottomOptionsView *optionsView;         //选项View
 @property(nonatomic,strong)NSURL *outputFilePath;                    //视频输出路径
+@property(nonatomic,strong)NLSettingView *setView;                   //设置界面
+@property(nonatomic,assign)NSInteger flag;
 
 @end
 
 @implementation NLVideoRecordViewController
 
-- (void)viewDidLoad {
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+#pragma clang diagnostic pop
+    
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+#pragma clang diagnostic pop
+    
+}
 
+- (void)viewDidLoad {
+    self.flag = 0;
     [super viewDidLoad];
-    [self configureView];
-    [self readyRecordVideo];
+    [self checkPhotoStatus];
 
 }
 //准备录制
@@ -56,30 +76,14 @@
             rect = self.view.frame;
             break;
     }
-    self.previewView = [[NLVideoPreviewView alloc]initWithFrame:rect];
+    self.previewView = [[NLVideoPreviewView alloc]initWithFrame:rect Session:[NLVideoRecordManager shareVideoRecordManager].session];
     [self.view addSubview:self.previewView];
     
-    //关闭按钮
-    self.closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.closeBtn.frame = CGRectMake(MARGIN,SAFEAREA_TOP_HEIGH, 23, 23);
-    [self.closeBtn setImage:[UIImage imageNamed:@"record_close"] forState:UIControlStateNormal];
-    [self.closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.closeBtn];
-    
-    //摄像头按钮
-    self.cameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.cameraBtn.frame = CGRectMake(kScreenW-MARGIN-35, self.closeBtn.center.y-15, 35, 30);
-    [self.cameraBtn setImage:[UIImage imageNamed:@"record_camera"] forState:UIControlStateNormal];
-    [self.cameraBtn addTarget:self action:@selector(turnCamera:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.cameraBtn];
-    
-    //闪光灯按钮
-    self.lightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.lightBtn.frame = CGRectMake(self.cameraBtn.frame.origin.x-19-34, self.closeBtn.center.y-15, 19, 30);
-    [self.lightBtn setImage:[UIImage imageNamed:@"record_light_off"] forState:UIControlStateNormal];
-    objc_setAssociatedObject(self.lightBtn, "light_state", @"record_light_off", OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self.lightBtn addTarget:self action:@selector(light:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.lightBtn];
+    self.topView = [[NLTopOptionsView alloc]initWithFrame:CGRectMake(0, SAFEAREA_TOP_HEIGH-STATUS_HEIGHT/2, kScreenW, 40)];
+    [self.topView.closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    [self.topView.cameraBtn addTarget:self action:@selector(turnCamera:) forControlEvents:UIControlEventTouchUpInside];
+    [self.topView.lightBtn addTarget:self action:@selector(light:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.topView];
     
     //倒计时View
     self.timeView = [[NLTimeView alloc]initWithFrame:CGRectMake((kScreenW-STARTBTN_WIDTH)/2,kScreenH-SAFEAREA_BOTTOM_HEIGH-TIMEVIEW_HEIGHT-STARTBTN_WIDTH-MARGIN*1.5, STARTBTN_WIDTH, TIMEVIEW_HEIGHT)];
@@ -101,6 +105,12 @@
     self.optionsView.delegate = self;
     [self.view addSubview:self.optionsView];
     
+}
+-(NLSettingView *)setView{
+    if (_setView == nil) {
+        _setView = [[NLSettingView alloc]initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH) SuperVC:self];
+    }
+    return _setView;
 }
 //MARK:Action
 //关闭界面
@@ -137,14 +147,17 @@
 }
 //录制
 -(void)longPress:(UILongPressGestureRecognizer *)gestureRecognizer{
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        [self updateViewWithOptionsViewHidden:YES];
-        [[NLVideoRecordManager shareVideoRecordManager] startRecord];
-        
-    }else if (gestureRecognizer.state == UIGestureRecognizerStateEnded){
-        [self updateViewWithOptionsViewHidden:NO];
-        [[NLVideoRecordManager shareVideoRecordManager] stopRecord];
+    if ([self checkAudioStatus]) {
+        if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+            [self updateViewWithOptionsViewHidden:YES];
+            [[NLVideoRecordManager shareVideoRecordManager] startRecord];
+            
+        }else if (gestureRecognizer.state == UIGestureRecognizerStateEnded){
+            [self updateViewWithOptionsViewHidden:NO];
+            [[NLVideoRecordManager shareVideoRecordManager] stopRecord];
+        }
     }
+    self.flag++;
     
 }
 //更新界面
@@ -158,8 +171,8 @@
     [[NLVideoRecordManager shareVideoRecordManager] stopRecord];
     [[NLVideoRecordManager shareVideoRecordManager] removeOutputAndInput];
     
-    objc_setAssociatedObject(self.lightBtn, "light_state", @"record_light_off", OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self.lightBtn setImage:[UIImage imageNamed:@"record_light_off"] forState:UIControlStateNormal];
+    objc_setAssociatedObject(self.topView.lightBtn, "light_state", @"record_light_off", OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self.topView.lightBtn setImage:[UIImage imageNamed:@"record_light_off"] forState:UIControlStateNormal];
     [[NLVideoRecordManager shareVideoRecordManager]changeLightWithState:AVCaptureTorchModeOff];
 }
 //MARK:NLVideoRecordManagerDelegate
@@ -184,7 +197,7 @@
     [self.progressView updateProgressWithValue:time/self.param.maxTime];
 }
 -(void)lightIsHidden:(BOOL)isHidden{
-    self.lightBtn.hidden = isHidden;
+    self.topView.lightBtn.hidden = isHidden;
 }
 //MARK:NLBottomOptionsViewDelegate
 -(void)selectedClick{
@@ -207,5 +220,57 @@
     [self reloadRecordTime:0];
     [self readyRecordVideo];
 }
+
+
+//麦克风状态
+-(BOOL)checkAudioStatus{
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
+        if (self.flag == 0) {
+            UIAlertController *alter = [UIAlertController alertControllerWithTitle:@"无法使用麦克风" message:@"您未开启麦克风,录制视频将没有声音" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action){
+                [self close];
+                self.flag = 0;
+            }];
+            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                self.flag = 0;
+            }];
+            
+            [alter addAction:action];
+            [alter addAction:action1];
+            [self showViewController:alter sender:nil];
+        }
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+//相机状态
+-(void)checkPhotoStatus{
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authStatus == AVAuthorizationStatusNotDetermined){
+        [self.view addSubview:self.setView];
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            if (granted) {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [self checkPhotoStatus];
+                });
+            }
+        }];
+    }else if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
+        [self.view addSubview:self.setView];
+    }else{
+        [self.setView removeFromSuperview];
+        [self configureView];
+        [self readyRecordVideo];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self checkAudioStatus];
+        });
+    }
+}
+
+
 
 @end

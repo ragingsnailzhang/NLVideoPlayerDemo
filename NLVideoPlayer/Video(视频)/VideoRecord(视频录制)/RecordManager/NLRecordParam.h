@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger,NLVideoRatio){
+    NLVideoVideoRatio1To1 = 1,         // 1:1
     NLVideoVideoRatio4To3,         // 4:3
     NLVideoVideoRatio16To9,        // 16:9
     NLVideoVideoRatioFullScreen    // 全屏

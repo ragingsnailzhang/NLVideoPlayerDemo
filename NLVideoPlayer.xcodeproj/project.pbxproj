@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		928B2EA867ECFA7DE80188F0 /* libPods-NLVideoPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A652C1371DDDEADFA7C7B220 /* libPods-NLVideoPlayer.a */; };
+		CA2B064D20B3E1DA007ADA30 /* NLWriterVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2B064C20B3E1DA007ADA30 /* NLWriterVideoRecordViewController.m */; };
+		CA2B065020B3E29E007ADA30 /* NLWriterVideoRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2B064F20B3E29E007ADA30 /* NLWriterVideoRecordManager.m */; };
+		CA2B065620B4FB6D007ADA30 /* NLSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2B065520B4FB6D007ADA30 /* NLSettingView.m */; };
+		CA2B065920B4FD42007ADA30 /* NLTopOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2B065820B4FD42007ADA30 /* NLTopOptionsView.m */; };
 		CA63E836209C04E100090A20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63E835209C04E100090A20 /* AppDelegate.m */; };
 		CA63E839209C04E100090A20 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63E838209C04E100090A20 /* ViewController.m */; };
 		CA63E83C209C04E100090A20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA63E83A209C04E100090A20 /* Main.storyboard */; };
@@ -71,6 +75,14 @@
 
 /* Begin PBXFileReference section */
 		A652C1371DDDEADFA7C7B220 /* libPods-NLVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NLVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA2B064B20B3E1DA007ADA30 /* NLWriterVideoRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLWriterVideoRecordViewController.h; sourceTree = "<group>"; };
+		CA2B064C20B3E1DA007ADA30 /* NLWriterVideoRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLWriterVideoRecordViewController.m; sourceTree = "<group>"; };
+		CA2B064E20B3E29E007ADA30 /* NLWriterVideoRecordManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLWriterVideoRecordManager.h; sourceTree = "<group>"; };
+		CA2B064F20B3E29E007ADA30 /* NLWriterVideoRecordManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLWriterVideoRecordManager.m; sourceTree = "<group>"; };
+		CA2B065420B4FB6D007ADA30 /* NLSettingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLSettingView.h; sourceTree = "<group>"; };
+		CA2B065520B4FB6D007ADA30 /* NLSettingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLSettingView.m; sourceTree = "<group>"; };
+		CA2B065720B4FD42007ADA30 /* NLTopOptionsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLTopOptionsView.h; sourceTree = "<group>"; };
+		CA2B065820B4FD42007ADA30 /* NLTopOptionsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLTopOptionsView.m; sourceTree = "<group>"; };
 		CA63E831209C04E100090A20 /* NLVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA63E834209C04E100090A20 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA63E835209C04E100090A20 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -184,6 +196,42 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CA40D3C120B7A773001CDE98 /* NLFileOut */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888AE20AD80AB00088214 /* NLVideoRecordManager.h */,
+				CAB888AA20AD80AB00088214 /* NLVideoRecordManager.m */,
+			);
+			path = NLFileOut;
+			sourceTree = "<group>";
+		};
+		CA40D3C220B7A78D001CDE98 /* NLWriter */ = {
+			isa = PBXGroup;
+			children = (
+				CA2B064E20B3E29E007ADA30 /* NLWriterVideoRecordManager.h */,
+				CA2B064F20B3E29E007ADA30 /* NLWriterVideoRecordManager.m */,
+			);
+			path = NLWriter;
+			sourceTree = "<group>";
+		};
+		CA40D3C320B7A7B8001CDE98 /* FileOut */ = {
+			isa = PBXGroup;
+			children = (
+				CAB888B220AD80AB00088214 /* NLVideoRecordViewController.h */,
+				CAB888B320AD80AB00088214 /* NLVideoRecordViewController.m */,
+			);
+			path = FileOut;
+			sourceTree = "<group>";
+		};
+		CA40D3C420B7A7C6001CDE98 /* Writer */ = {
+			isa = PBXGroup;
+			children = (
+				CA2B064B20B3E1DA007ADA30 /* NLWriterVideoRecordViewController.h */,
+				CA2B064C20B3E1DA007ADA30 /* NLWriterVideoRecordViewController.m */,
+			);
+			path = Writer;
+			sourceTree = "<group>";
+		};
 		CA63E828209C04E100090A20 = {
 			isa = PBXGroup;
 			children = (
@@ -264,8 +312,8 @@
 		CAB8889020AD80AB00088214 /* WaterMarkManager */ = {
 			isa = PBXGroup;
 			children = (
-				CAB8889120AD80AB00088214 /* NLWaterMarkManager.m */,
 				CAB8889220AD80AB00088214 /* NLWaterMarkManager.h */,
+				CAB8889120AD80AB00088214 /* NLWaterMarkManager.m */,
 			);
 			path = WaterMarkManager;
 			sourceTree = "<group>";
@@ -315,8 +363,8 @@
 				CAB888AF20AD80AB00088214 /* NLFileManager.m */,
 				CAB888AB20AD80AB00088214 /* NLRecordParam.h */,
 				CAB888AD20AD80AB00088214 /* NLRecordParam.m */,
-				CAB888AE20AD80AB00088214 /* NLVideoRecordManager.h */,
-				CAB888AA20AD80AB00088214 /* NLVideoRecordManager.m */,
+				CA40D3C220B7A78D001CDE98 /* NLWriter */,
+				CA40D3C120B7A773001CDE98 /* NLFileOut */,
 			);
 			path = RecordManager;
 			sourceTree = "<group>";
@@ -325,9 +373,9 @@
 			isa = PBXGroup;
 			children = (
 				CAB888B120AD80AB00088214 /* NLVideoPreviewViewController.h */,
-				CAB888B220AD80AB00088214 /* NLVideoRecordViewController.h */,
-				CAB888B320AD80AB00088214 /* NLVideoRecordViewController.m */,
 				CAB888B420AD80AB00088214 /* NLVideoPreviewViewController.m */,
+				CA40D3C420B7A7C6001CDE98 /* Writer */,
+				CA40D3C320B7A7B8001CDE98 /* FileOut */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -335,16 +383,20 @@
 		CAB888B520AD80AB00088214 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CAB888B620AD80AB00088214 /* NLProgressView.h */,
-				CAB888B720AD80AB00088214 /* NLTimeView.m */,
-				CAB888B820AD80AB00088214 /* NLBottomOptionsView.m */,
-				CAB888B920AD80AB00088214 /* NLLoadingView.m */,
-				CAB888BA20AD80AB00088214 /* NLVideoPreviewView.h */,
-				CAB888BB20AD80AB00088214 /* NLTimeView.h */,
-				CAB888BC20AD80AB00088214 /* NLProgressView.m */,
 				CAB888BD20AD80AB00088214 /* NLBottomOptionsView.h */,
+				CAB888B820AD80AB00088214 /* NLBottomOptionsView.m */,
+				CA2B065720B4FD42007ADA30 /* NLTopOptionsView.h */,
+				CA2B065820B4FD42007ADA30 /* NLTopOptionsView.m */,
 				CAB888BE20AD80AB00088214 /* NLLoadingView.h */,
+				CAB888B920AD80AB00088214 /* NLLoadingView.m */,
+				CAB888B620AD80AB00088214 /* NLProgressView.h */,
+				CAB888BC20AD80AB00088214 /* NLProgressView.m */,
+				CAB888BB20AD80AB00088214 /* NLTimeView.h */,
+				CAB888B720AD80AB00088214 /* NLTimeView.m */,
+				CAB888BA20AD80AB00088214 /* NLVideoPreviewView.h */,
 				CAB888BF20AD80AB00088214 /* NLVideoPreviewView.m */,
+				CA2B065420B4FB6D007ADA30 /* NLSettingView.h */,
+				CA2B065520B4FB6D007ADA30 /* NLSettingView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -585,8 +637,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2B064D20B3E1DA007ADA30 /* NLWriterVideoRecordViewController.m in Sources */,
 				CA63E839209C04E100090A20 /* ViewController.m in Sources */,
 				CAB888EB20AD80AB00088214 /* NLVideoPreviewView.m in Sources */,
+				CA2B065620B4FB6D007ADA30 /* NLSettingView.m in Sources */,
 				CAB888ED20AD80AB00088214 /* NLVideoUploadManager.m in Sources */,
 				CAB888E920AD80AB00088214 /* NLLoadingView.m in Sources */,
 				CAB888E220AD80AB00088214 /* NLVideoRecordManager.m in Sources */,
@@ -598,6 +652,8 @@
 				CAB888E820AD80AB00088214 /* NLBottomOptionsView.m in Sources */,
 				CAB888EA20AD80AB00088214 /* NLProgressView.m in Sources */,
 				CAB888CD20AD80AB00088214 /* NLWaterMarkManager.m in Sources */,
+				CA2B065020B3E29E007ADA30 /* NLWriterVideoRecordManager.m in Sources */,
+				CA2B065920B4FD42007ADA30 /* NLTopOptionsView.m in Sources */,
 				CAB888E420AD80AB00088214 /* NLFileManager.m in Sources */,
 				CAB888EE20AD80AB00088214 /* AFHTTPSessionManager+ShareSessionManager.m in Sources */,
 				CA63E836209C04E100090A20 /* AppDelegate.m in Sources */,

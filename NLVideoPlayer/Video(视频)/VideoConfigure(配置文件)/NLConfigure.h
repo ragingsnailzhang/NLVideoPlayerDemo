@@ -17,6 +17,8 @@
 #define SAFEAREA_BOTTOM_HEIGH                  (kScreenH == 812.0 ? 34.0f : 0.01f)
 //上边距安全距离
 #define SAFEAREA_TOP_HEIGH                     (kScreenH == 812.0 ? 44.0f : 20.0f)
+//状态栏高度
+#define STATUS_HEIGHT  20.f
 //边距
 #define MARGIN      20
 //录制按钮大小
