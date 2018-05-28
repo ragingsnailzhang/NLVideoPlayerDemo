@@ -387,7 +387,7 @@ static NLWriterVideoRecordManager *manager = nil;
     if (self.recordParam.currentVC.view) {
         self.inView = self.recordParam.currentVC.view;
     }else{
-        self.inView = [UIApplication sharedApplication].keyWindow.rootViewController.childViewControllers.lastObject.view;
+        self.inView = [self getCurrentVC].view;
     }
     if (![NSThread currentThread].isMainThread) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -484,6 +484,28 @@ static NLWriterVideoRecordManager *manager = nil;
     NSString *videoPath = [folderPath stringByAppendingPathComponent:[NSString stringWithFormat:@"video_%ld.mp4",time(0)]];
     return videoPath;
 }
+
+- (UIViewController *)getCurrentVC{
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *currentVC = [self getCurrentVCFrom:rootViewController];
+    return currentVC;
+}
+
+- (UIViewController *)getCurrentVCFrom:(UIViewController *)rootVC{
+    UIViewController *currentVC;
+    if ([rootVC presentedViewController]) {// 视图是被presented出来的
+        rootVC = [rootVC presentedViewController];
+    }
+    if ([rootVC isKindOfClass:[UITabBarController class]]) {// 根视图为UITabBarController
+        currentVC = [self getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
+    } else if ([rootVC isKindOfClass:[UINavigationController class]]){// 根视图为UINavigationController
+        currentVC = [self getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
+    } else {// 根视图为非导航类
+        currentVC = rootVC;
+    }
+    return currentVC;
+}
+
 
 //MARK:Action
 -(void)timeAction{
