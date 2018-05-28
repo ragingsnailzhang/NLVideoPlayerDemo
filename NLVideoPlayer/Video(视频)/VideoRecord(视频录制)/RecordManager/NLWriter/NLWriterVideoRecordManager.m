@@ -8,6 +8,8 @@
 
 #import "NLWriterVideoRecordManager.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <GLKit/GLKit.h>
+
 @interface NLWriterVideoRecordManager()<AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureAudioDataOutputSampleBufferDelegate>
 //视频录制
 @property(nonatomic,strong)NLRecordParam *recordParam;
@@ -23,6 +25,7 @@
 @property(nonatomic,strong)AVAssetWriter *assetWriter;                      //写入管理
 @property(nonatomic,strong)AVAssetWriterInput *assetWriterVideoInput;       //视频写入
 @property(nonatomic,strong)AVAssetWriterInput *assetWriterAudioInput;       //音频写入
+@property(nonatomic,strong)AVAssetWriterInputPixelBufferAdaptor *assetWriterPixelBufferInput;
 @property(nonatomic,assign)CMTime startTime;                                //视频起始时间
 
 @property(nonatomic,strong)NSURL *outputURL;                                //输出路径
@@ -106,9 +109,9 @@ static NLWriterVideoRecordManager *manager = nil;
     
     AVCaptureConnection *captureConnection = [self.videoOutput connectionWithMediaType:AVMediaTypeVideo];
     captureConnection.videoOrientation = AVCaptureVideoOrientationPortrait;
-    if ([captureConnection isVideoStabilizationSupported]) {//判断是否支持防抖
-        captureConnection.preferredVideoStabilizationMode = AVCaptureVideoStabilizationModeAuto;
-    }
+//    if ([captureConnection isVideoStabilizationSupported]) {//判断是否支持防抖
+//        captureConnection.preferredVideoStabilizationMode = AVCaptureVideoStabilizationModeAuto;
+//    }
 
 }
 //设置音频输入/输出
@@ -211,6 +214,7 @@ static NLWriterVideoRecordManager *manager = nil;
     if ([self.assetWriter canApplyOutputSettings:videoCompressionSettings forMediaType:AVMediaTypeVideo]){
         self.assetWriterVideoInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoCompressionSettings];
         self.assetWriterVideoInput.expectsMediaDataInRealTime = YES;
+        self.assetWriterPixelBufferInput = [AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:self.assetWriterVideoInput sourcePixelBufferAttributes:videoCompressionSettings];
 
         if ([self.assetWriter canAddInput:self.assetWriterVideoInput]){
             [self.assetWriter addInput:self.assetWriterVideoInput];
@@ -496,6 +500,14 @@ static NLWriterVideoRecordManager *manager = nil;
 //MARK:AVCaptureDataOutputSampleBufferDelegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
     
+    //添加滤镜
+    CVPixelBufferRef cpvBufferRef = NULL;
+    if (connection == [self.videoOutput connectionWithMediaType:AVMediaTypeVideo]) {
+        if (self.vcDelegate && [self.vcDelegate respondsToSelector:@selector(showView:)]) {
+            cpvBufferRef = [self.vcDelegate showView:sampleBuffer];
+        }
+    }
+    
     if (self.isRecording) {
         CFRetain(sampleBuffer);
         dispatch_async(self.writeQueue, ^{
@@ -506,9 +518,8 @@ static NLWriterVideoRecordManager *manager = nil;
                         self.readyToRecordVideo = [self setupAssetWriterVideoInput:CMSampleBufferGetFormatDescription(sampleBuffer)];
                     }
                     if ([self inputsReadyToRecord]){
-                        [self appendSampleBuffer:sampleBuffer ofMediaType:AVMediaTypeVideo];
+                        [self appendSampleBuffer:sampleBuffer ofMediaType:AVMediaTypeVideo CVPixelBufferRef:cpvBufferRef];
                     }
-                    
                 }
                 
                 //音频
@@ -517,7 +528,7 @@ static NLWriterVideoRecordManager *manager = nil;
                         self.readyToRecordAudio = [self setupAssetWriterAudioInput:CMSampleBufferGetFormatDescription(sampleBuffer)];
                     }
                     if ([self inputsReadyToRecord]){
-                        [self appendSampleBuffer:sampleBuffer ofMediaType:AVMediaTypeAudio];
+                        [self appendSampleBuffer:sampleBuffer ofMediaType:AVMediaTypeAudio CVPixelBufferRef:nil];
                     }
                 }
             }
@@ -529,7 +540,7 @@ static NLWriterVideoRecordManager *manager = nil;
     
 }
 //开始写入数据
-- (void)appendSampleBuffer:(CMSampleBufferRef)sampleBuffer ofMediaType:(NSString *)mediaType{
+- (void)appendSampleBuffer:(CMSampleBufferRef)sampleBuffer ofMediaType:(NSString *)mediaType CVPixelBufferRef:(CVPixelBufferRef)cpvBufferRef{
     if (sampleBuffer == NULL){
         NSLog(@"empty sampleBuffer");
         return;
@@ -543,10 +554,16 @@ static NLWriterVideoRecordManager *manager = nil;
         //写入视频数据
         if (mediaType == AVMediaTypeVideo) {
             if (self.assetWriterVideoInput.readyForMoreMediaData) {
-                BOOL success = [self.assetWriterVideoInput appendSampleBuffer:sampleBuffer];
-                if (!success) {
-                    @synchronized (self) {
-                        [self stopRecord];
+                if (self.recordParam.isFilter) {
+                    if (cpvBufferRef) {
+                        [self.assetWriterPixelBufferInput appendPixelBuffer:cpvBufferRef withPresentationTime:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)];
+                    }
+                }else{
+                    BOOL success = [self.assetWriterVideoInput appendSampleBuffer:sampleBuffer];
+                    if (!success) {
+                        @synchronized (self) {
+                            [self stopRecord];
+                        }
                     }
                 }
             }
@@ -565,5 +582,45 @@ static NLWriterVideoRecordManager *manager = nil;
         }
     }
 }
+
+//- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer
+//{
+//    // Get a CMSampleBuffer's Core Video image buffer for the media data
+//    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+//    // Lock the base address of the pixel buffer
+//    CVPixelBufferLockBaseAddress(imageBuffer, 0);
+//
+//    // Get the number of bytes per row for the pixel buffer
+//    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+//
+//    // Get the number of bytes per row for the pixel buffer
+//    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+//    // Get the pixel buffer width and height
+//    size_t width = CVPixelBufferGetWidth(imageBuffer);
+//    size_t height = CVPixelBufferGetHeight(imageBuffer);
+//
+//    // Create a device-dependent RGB color space
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//
+//    // Create a bitmap graphics context with the sample buffer data
+//    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
+//                                                 bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+//    // Create a Quartz image from the pixel data in the bitmap graphics context
+//    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
+//    // Unlock the pixel buffer
+//    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+//
+//    // Free up the context and color space
+//    CGContextRelease(context);
+//    CGColorSpaceRelease(colorSpace);
+//
+//    // Create an image object from the Quartz image
+//    UIImage *image = [UIImage imageWithCGImage:quartzImage];
+//
+//    // Release the Quartz image
+//    CGImageRelease(quartzImage);
+//
+//    return (image);
+//}
 
 @end

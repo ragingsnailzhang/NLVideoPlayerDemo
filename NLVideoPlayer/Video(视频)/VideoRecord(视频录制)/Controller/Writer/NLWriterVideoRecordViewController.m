@@ -12,16 +12,22 @@
 #import "NLWriterVideoRecordManager.h"
 #import "NLSettingView.h"
 #import "NLTopOptionsView.h"
+#import "NLFilterPreviewView.h"
+
 @interface NLWriterVideoRecordViewController ()<NLBottomOptionsViewDelegate,NLWriterVideoRecordManagerVCDelegate>
 
 @property(nonatomic,strong)NLTopOptionsView *topView;                //顶部View
-@property(nonatomic,strong)NLVideoPreviewView *previewView;          //预览View
+@property(nonatomic,strong)NLVideoPreviewView *previewView;          //无滤镜预览View
+@property(nonatomic,strong)NLFilterPreviewView *filterView;          //有滤镜预览View
 @property(nonatomic,strong)NLTimeView *timeView;                     //倒计时View
 @property(nonatomic,strong)NLProgressView *progressView;             //进度
 @property(nonatomic,strong)NLBottomOptionsView *optionsView;         //选项View
 @property(nonatomic,strong)NSURL *outputFileURL;                     //视频输出路径
 @property(nonatomic,strong)NLSettingView *setView;                   //设置界面
 @property(nonatomic,assign)NSInteger flag;
+
+
+
 @end
 
 @implementation NLWriterVideoRecordViewController
@@ -53,7 +59,6 @@
 }
 //准备录制
 -(void)readyRecordVideo{
-    
     [[NLWriterVideoRecordManager shareVideoRecordManager] configVideoParamsWithRecordParam:self.param];
     [[NLWriterVideoRecordManager shareVideoRecordManager] startSessionRunning];
     [NLWriterVideoRecordManager shareVideoRecordManager].vcDelegate = self;
@@ -80,8 +85,13 @@
             rect = self.view.frame;
             break;
     }
-    self.previewView = [[NLVideoPreviewView alloc]initWithFrame:rect Session:[NLWriterVideoRecordManager shareVideoRecordManager].session];
-    [self.view addSubview:self.previewView];
+    if (self.param.isFilter) {
+        self.filterView = [[NLFilterPreviewView alloc]initWithFrame:rect];
+        [self.view addSubview:self.filterView];
+    }else{
+        self.previewView = [[NLVideoPreviewView alloc]initWithFrame:rect Session:[NLWriterVideoRecordManager shareVideoRecordManager].session];
+        [self.view addSubview:self.previewView];
+    }
     
     self.topView = [[NLTopOptionsView alloc]initWithFrame:CGRectMake(0, SAFEAREA_TOP_HEIGH-STATUS_HEIGHT/2, kScreenW, 40)];
     [self.topView.closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
@@ -196,8 +206,13 @@
     self.timeView.timeLab.text = [NSString stringWithFormat:@"%02ld秒",(long)floorf(time)];
     [self.progressView updateProgressWithValue:time/self.param.maxTime];
 }
+//闪光灯隐藏与否
 -(void)lightIsHidden:(BOOL)isHidden{
     self.topView.lightBtn.hidden = isHidden;
+}
+//滤镜
+-(CVPixelBufferRef)showView:(CMSampleBufferRef)sampleBuffer{
+    return [self.filterView showView:sampleBuffer];
 }
 //MARK:NLBottomOptionsViewDelegate
 -(void)selectedClick{

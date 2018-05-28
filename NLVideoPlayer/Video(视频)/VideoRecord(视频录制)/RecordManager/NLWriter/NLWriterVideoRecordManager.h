@@ -17,6 +17,8 @@
 -(void)reloadRecordTime:(CGFloat)time;
 //隐藏闪光灯
 -(void)lightIsHidden:(BOOL)isHidden;
+//添加滤镜层
+-(CVPixelBufferRef)showView:(CMSampleBufferRef)sampleBuffer;
 
 @end
 

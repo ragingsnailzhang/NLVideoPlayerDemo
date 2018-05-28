@@ -64,7 +64,7 @@
 }
 -(void)recordClick{
     self.uploadBtn.enabled = YES;
-    NLRecordParam *param = [NLRecordParam recordConfigWithVideoRatio:NLVideoVideoRatioFullScreen Position:AVCaptureDevicePositionBack maxRecordTime:10.f minRecordTime:1.f Compression:YES WaterMark:@"wz_yinglong" CurrentVC:self];
+    NLRecordParam *param = [NLRecordParam recordConfigWithVideoRatio:NLVideoVideoRatioFullScreen Position:AVCaptureDevicePositionBack maxRecordTime:10.f minRecordTime:1.f Compression:NO WaterMark:nil Filter:YES CurrentVC:self];
     UIViewController *recordVC = [NLWriterVideoRecordManager createRecordViewControllerWithRecordParam:param];
     [NLWriterVideoRecordManager shareVideoRecordManager].delegate = self;
     [self presentViewController:recordVC animated:YES completion:nil];

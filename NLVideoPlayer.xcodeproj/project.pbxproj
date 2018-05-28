@@ -12,6 +12,7 @@
 		CA2B065020B3E29E007ADA30 /* NLWriterVideoRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2B064F20B3E29E007ADA30 /* NLWriterVideoRecordManager.m */; };
 		CA2B065620B4FB6D007ADA30 /* NLSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2B065520B4FB6D007ADA30 /* NLSettingView.m */; };
 		CA2B065920B4FD42007ADA30 /* NLTopOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2B065820B4FD42007ADA30 /* NLTopOptionsView.m */; };
+		CA40D3D320BBCFD1001CDE98 /* NLFilterPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA40D3D220BBCFD1001CDE98 /* NLFilterPreviewView.m */; };
 		CA63E836209C04E100090A20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63E835209C04E100090A20 /* AppDelegate.m */; };
 		CA63E839209C04E100090A20 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63E838209C04E100090A20 /* ViewController.m */; };
 		CA63E83C209C04E100090A20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA63E83A209C04E100090A20 /* Main.storyboard */; };
@@ -83,6 +84,8 @@
 		CA2B065520B4FB6D007ADA30 /* NLSettingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLSettingView.m; sourceTree = "<group>"; };
 		CA2B065720B4FD42007ADA30 /* NLTopOptionsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLTopOptionsView.h; sourceTree = "<group>"; };
 		CA2B065820B4FD42007ADA30 /* NLTopOptionsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLTopOptionsView.m; sourceTree = "<group>"; };
+		CA40D3D120BBCFD1001CDE98 /* NLFilterPreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLFilterPreviewView.h; sourceTree = "<group>"; };
+		CA40D3D220BBCFD1001CDE98 /* NLFilterPreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLFilterPreviewView.m; sourceTree = "<group>"; };
 		CA63E831209C04E100090A20 /* NLVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NLVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA63E834209C04E100090A20 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA63E835209C04E100090A20 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -232,6 +235,15 @@
 			path = Writer;
 			sourceTree = "<group>";
 		};
+		CA40D3C520B7DA31001CDE98 /* FilterManager */ = {
+			isa = PBXGroup;
+			children = (
+				CA40D3D120BBCFD1001CDE98 /* NLFilterPreviewView.h */,
+				CA40D3D220BBCFD1001CDE98 /* NLFilterPreviewView.m */,
+			);
+			path = FilterManager;
+			sourceTree = "<group>";
+		};
 		CA63E828209C04E100090A20 = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +316,7 @@
 		CAB8888F20AD80AB00088214 /* VideoEdit(视频编辑) */ = {
 			isa = PBXGroup;
 			children = (
+				CA40D3C520B7DA31001CDE98 /* FilterManager */,
 				CAB8889020AD80AB00088214 /* WaterMarkManager */,
 			);
 			path = "VideoEdit(视频编辑)";
@@ -648,6 +661,7 @@
 				CAB888E720AD80AB00088214 /* NLTimeView.m in Sources */,
 				CA63E844209C04E300090A20 /* main.m in Sources */,
 				CAB888EC20AD80AB00088214 /* TBMoviePlayer.m in Sources */,
+				CA40D3D320BBCFD1001CDE98 /* NLFilterPreviewView.m in Sources */,
 				CAB888E620AD80AB00088214 /* NLVideoPreviewViewController.m in Sources */,
 				CAB888E820AD80AB00088214 /* NLBottomOptionsView.m in Sources */,
 				CAB888EA20AD80AB00088214 /* NLProgressView.m in Sources */,
